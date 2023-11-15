@@ -24,7 +24,7 @@
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/e5c96fca62.js" crossorigin="anonymous"></script>
     <!-- Nucleo Icons -->
     <link rel="stylesheet" href="{{ asset('assets/css/nucleo-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/nucleo-svg.css') }}">
@@ -33,6 +33,7 @@
     <!-- Main Styling -->
     <link rel="stylesheet" href="{{ asset('assets/css/argon-dashboard-tailwind.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/datatables.css') }}">
+    @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 
 <body
@@ -55,17 +56,18 @@
         <!-- end cards -->
     </main>
     @include('dashboard.layouts.setting')
+    <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+    <!-- plugin for charts  -->
+    <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
+    <!-- plugin for scrollbar  -->
+    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+    <!-- main script file  -->
+    <script src="{{ asset('assets/js/argon-dashboard-tailwind.js') }}"></script>
+    <script src="{{ asset('assets/vendor/jquery-3.7.0.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/datatables.js') }}"></script>
+    <script>
+        let table = new DataTable("#datatable-search");
+    </script>
 </body>
-<!-- plugin for charts  -->
-<script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
-<!-- plugin for scrollbar  -->
-<script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
-<!-- main script file  -->
-<script src="{{ asset('assets/js/argon-dashboard-tailwind.js') }}"></script>
-<script src="{{ asset('assets/vendor/jquery-3.7.0.min.js') }}"></script>
-<script src="{{ asset('assets/vendor/datatables.js') }}"></script>
-<script>
-    let table = new DataTable("#datatable-search");
-</script>
 
 </html>

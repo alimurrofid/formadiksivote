@@ -5,480 +5,180 @@
         <div class="w-full max-w-full px-3 flex-0">
             <div
                 class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
-                <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6">
+                <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 flex justify-between">
                     <h5 class="mb-0 dark:text-white">Datatable Search</h5>
-                    <p class="mb-0 text-sm leading-normal">A lightweight, extendable, dependency-free javascript HTML table
-                        plugin.</p>
+                    <div class="flex">
+                    <button data-modal-target="add-user-modal" data-modal-toggle="add-user-modal" type="button" class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add User</button>
+                    <button type="button" class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Import</button>
+                    <button type="button" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:focus:ring-yellow-900">Reset</button>
+                    <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete All</button>
+                    </div>
                 </div>
+                <div id="add-user-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div class="relative p-4 w-full max-w-md max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                        <!-- Modal header -->
+                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                Add New User
+                            </h3>
+                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="add-user-modal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <form action="#" class="p-4 md:p-5">
+                            <div class="grid gap-4 mb-4 grid-cols-2">
+                                <div class="col-span-2">
+                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="eg. Ali Murofid" required="">
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                                    <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="eg. Ali Murofid" required="">
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="password"
+                                        class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                        Password <button type="button" id="btnshow" onclick="showPassword(), changetext()"><i class="fa-regular fa-eye"></i></button>
+                                    </label>
+                                    <input type="password" id="password"
+                                    class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                </div>
+
+                                <div class="col-span-2">
+                                    <label for="confirm-password"
+                                        class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                        Confirm Password <button type="button" id="btnshow" onclick="showConfPassword(), changeconftext()"><i class="fa-regular fa-eye"></i></button>
+                                    </label>
+                                    <input type="password" id="confirm-password"
+                                    class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
+                                </div>
+                            </div>
+                            <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                                Add new product
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
                 <div class="table-responsive p-6">
                     <table class="table table-flush" datatable id="datatable-search">
                         <thead class="thead-light">
                             <tr>
+                                <th>No</th>
                                 <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="text-sm font-normal leading-normal">Tiger Nixon</td>
-                                <td class="text-sm font-normal leading-normal">System Architect</td>
-                                <td class="text-sm font-normal leading-normal">Edinburgh</td>
-                                <td class="text-sm font-normal leading-normal">61</td>
-                                <td class="text-sm font-normal leading-normal">2011/04/25</td>
-                                <td class="text-sm font-normal leading-normal">$320,800</td>
+                                <td class="text-sm font-normal leading-normal">1</td>
+                                <td class="text-sm font-normal leading-normal">Rofid</td>
+                                <td class="text-sm font-normal leading-normal">Rofidgans123</td>
+                                <td class="text-sm font-normal leading-normal">1234</td>
+                                <td class="text-sm font-normal leading-normal">
+                                <span
+                                    class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Sudah</span>
+                                </td>
+                                <td class="text-sm font-normal leading-normal flex flex-wrap">
+                                <button data-modal-target="edit-user-modal-1" data-modal-toggle="edit-user-modal-1" type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button>
+                                <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+
+                                <div id="edit-user-modal-1" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                    <div class="relative p-4 w-full max-w-md max-h-full">
+                                    <!-- Modal content -->
+                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                        <!-- Modal header -->
+                                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                                Add New User
+                                            </h3>
+                                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="add-user-modal">
+                                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                                </svg>
+                                                <span class="sr-only">Close modal</span>
+                                            </button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <form action="#" class="p-4 md:p-5">
+                                            <div class="grid gap-4 mb-4 grid-cols-2">
+                                                <div class="col-span-2">
+                                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                                    <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="eg. Ali Murofid" required="">
+                                                </div>
+                                                <div class="col-span-2">
+                                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                                                    <input type="text" name="username" id="username" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="eg. Ali Murofid" required="">
+                                                </div>
+                                                <div class="col-span-2">
+                                                    <label for="password"
+                                                        class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                        Password <button type="button" id="btnshow" onclick="showPassword(), changetext()"><i class="fa-regular fa-eye"></i></button>
+                                                    </label>
+                                                    <input type="password" id="password"
+                                                    class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                                </div>
+
+                                                <div class="col-span-2">
+                                                    <label for="confirm-password"
+                                                        class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                        Confirm Password <button class type="button" id="btnshow" onclick="showConfPassword(), changeconftext()"><i class="fa-regular fa-eye"></i></button>
+                                                    </label>
+                                                    <input type="password" id="confirm-password"
+                                                    class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                                                Add new product
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                                </td>
                             </tr>
                             <tr>
-                                <td class="text-sm font-normal leading-normal">Garrett Winters</td>
-                                <td class="text-sm font-normal leading-normal">Accountant</td>
-                                <td class="text-sm font-normal leading-normal">Tokyo</td>
-                                <td class="text-sm font-normal leading-normal">63</td>
-                                <td class="text-sm font-normal leading-normal">2011/07/25</td>
-                                <td class="text-sm font-normal leading-normal">$170,750</td>
+                                <td class="text-sm font-normal leading-normal">2</td>
+                                <td class="text-sm font-normal leading-normal">Ryan</td>
+                                <td class="text-sm font-normal leading-normal">Rynss12</td>
+                                <td class="text-sm font-normal leading-normal">123456</td>
+                                <td class="text-sm font-normal leading-normal">
+                                    <span
+                                     class="bg-gradient-to-tl from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Belum</span>
+                                </td>
+                                <td class="text-sm font-normal leading-normal flex flex-wrap">
+                                <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button>
+                                <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+                                </td>
                             </tr>
                             <tr>
-                                <td class="text-sm font-normal leading-normal">Ashton Cox</td>
-                                <td class="text-sm font-normal leading-normal">Junior Technical Author</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">66</td>
-                                <td class="text-sm font-normal leading-normal">2009/01/12</td>
-                                <td class="text-sm font-normal leading-normal">$86,000</td>
+                                <td class="text-sm font-normal leading-normal">3</td>
+                                <td class="text-sm font-normal leading-normal">Rofids</td>
+                                <td class="text-sm font-normal leading-normal">Rofidganss123</td>
+                                <td class="text-sm font-normal leading-normal">12345</td>
+                                <td class="text-sm font-normal leading-normal">
+                                <span
+                                    class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Sudah</span>
+                                </td>
+                                <td class="text-sm font-normal leading-normal flex flex-wrap">
+                                    <div class="flex items-center justify-center">
+                                        <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button>
+                                        <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+                                    </div>
+
+                                </td>
                             </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Cedric Kelly</td>
-                                <td class="text-sm font-normal leading-normal">Senior Javascript Developer</td>
-                                <td class="text-sm font-normal leading-normal">Edinburgh</td>
-                                <td class="text-sm font-normal leading-normal">22</td>
-                                <td class="text-sm font-normal leading-normal">2012/03/29</td>
-                                <td class="text-sm font-normal leading-normal">$433,060</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Airi Satou</td>
-                                <td class="text-sm font-normal leading-normal">Accountant</td>
-                                <td class="text-sm font-normal leading-normal">Tokyo</td>
-                                <td class="text-sm font-normal leading-normal">33</td>
-                                <td class="text-sm font-normal leading-normal">2008/11/28</td>
-                                <td class="text-sm font-normal leading-normal">$162,700</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Brielle Williamson</td>
-                                <td class="text-sm font-normal leading-normal">Integration Specialist</td>
-                                <td class="text-sm font-normal leading-normal">New York</td>
-                                <td class="text-sm font-normal leading-normal">61</td>
-                                <td class="text-sm font-normal leading-normal">2012/12/02</td>
-                                <td class="text-sm font-normal leading-normal">$372,000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Herrod Chandler</td>
-                                <td class="text-sm font-normal leading-normal">Sales Assistant</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">59</td>
-                                <td class="text-sm font-normal leading-normal">2012/08/06</td>
-                                <td class="text-sm font-normal leading-normal">$137,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Rhona Davidson</td>
-                                <td class="text-sm font-normal leading-normal">Integration Specialist</td>
-                                <td class="text-sm font-normal leading-normal">Tokyo</td>
-                                <td class="text-sm font-normal leading-normal">55</td>
-                                <td class="text-sm font-normal leading-normal">2010/10/14</td>
-                                <td class="text-sm font-normal leading-normal">$327,900</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Colleen Hurst</td>
-                                <td class="text-sm font-normal leading-normal">Javascript Developer</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">39</td>
-                                <td class="text-sm font-normal leading-normal">2009/09/15</td>
-                                <td class="text-sm font-normal leading-normal">$205,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Sonya Frost</td>
-                                <td class="text-sm font-normal leading-normal">Software Engineer</td>
-                                <td class="text-sm font-normal leading-normal">Edinburgh</td>
-                                <td class="text-sm font-normal leading-normal">23</td>
-                                <td class="text-sm font-normal leading-normal">2008/12/13</td>
-                                <td class="text-sm font-normal leading-normal">$103,600</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Jena Gaines</td>
-                                <td class="text-sm font-normal leading-normal">Office Manager</td>
-                                <td class="text-sm font-normal leading-normal">London</td>
-                                <td class="text-sm font-normal leading-normal">30</td>
-                                <td class="text-sm font-normal leading-normal">2008/12/19</td>
-                                <td class="text-sm font-normal leading-normal">$90,560</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Quinn Flynn</td>
-                                <td class="text-sm font-normal leading-normal">Support Lead</td>
-                                <td class="text-sm font-normal leading-normal">Edinburgh</td>
-                                <td class="text-sm font-normal leading-normal">22</td>
-                                <td class="text-sm font-normal leading-normal">2013/03/03</td>
-                                <td class="text-sm font-normal leading-normal">$342,000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Charde Marshall</td>
-                                <td class="text-sm font-normal leading-normal">Regional Director</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">36</td>
-                                <td class="text-sm font-normal leading-normal">2008/10/16</td>
-                                <td class="text-sm font-normal leading-normal">$470,600</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Haley Kennedy</td>
-                                <td class="text-sm font-normal leading-normal">Senior Marketing Designer</td>
-                                <td class="text-sm font-normal leading-normal">London</td>
-                                <td class="text-sm font-normal leading-normal">43</td>
-                                <td class="text-sm font-normal leading-normal">2012/12/18</td>
-                                <td class="text-sm font-normal leading-normal">$313,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Tatyana Fitzpatrick</td>
-                                <td class="text-sm font-normal leading-normal">Regional Director</td>
-                                <td class="text-sm font-normal leading-normal">London</td>
-                                <td class="text-sm font-normal leading-normal">19</td>
-                                <td class="text-sm font-normal leading-normal">2010/03/17</td>
-                                <td class="text-sm font-normal leading-normal">$385,750</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Michael Silva</td>
-                                <td class="text-sm font-normal leading-normal">Marketing Designer</td>
-                                <td class="text-sm font-normal leading-normal">London</td>
-                                <td class="text-sm font-normal leading-normal">66</td>
-                                <td class="text-sm font-normal leading-normal">2012/11/27</td>
-                                <td class="text-sm font-normal leading-normal">$198,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Paul Byrd</td>
-                                <td class="text-sm font-normal leading-normal">Chief Financial Officer (CFO)</td>
-                                <td class="text-sm font-normal leading-normal">New York</td>
-                                <td class="text-sm font-normal leading-normal">64</td>
-                                <td class="text-sm font-normal leading-normal">2010/06/09</td>
-                                <td class="text-sm font-normal leading-normal">$725,000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Gloria Little</td>
-                                <td class="text-sm font-normal leading-normal">Systems Administrator</td>
-                                <td class="text-sm font-normal leading-normal">New York</td>
-                                <td class="text-sm font-normal leading-normal">59</td>
-                                <td class="text-sm font-normal leading-normal">2009/04/10</td>
-                                <td class="text-sm font-normal leading-normal">$237,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Bradley Greer</td>
-                                <td class="text-sm font-normal leading-normal">Software Engineer</td>
-                                <td class="text-sm font-normal leading-normal">London</td>
-                                <td class="text-sm font-normal leading-normal">41</td>
-                                <td class="text-sm font-normal leading-normal">2012/10/13</td>
-                                <td class="text-sm font-normal leading-normal">$132,000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Dai Rios</td>
-                                <td class="text-sm font-normal leading-normal">Personnel Lead</td>
-                                <td class="text-sm font-normal leading-normal">Edinburgh</td>
-                                <td class="text-sm font-normal leading-normal">35</td>
-                                <td class="text-sm font-normal leading-normal">2012/09/26</td>
-                                <td class="text-sm font-normal leading-normal">$217,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Jenette Caldwell</td>
-                                <td class="text-sm font-normal leading-normal">Development Lead</td>
-                                <td class="text-sm font-normal leading-normal">New York</td>
-                                <td class="text-sm font-normal leading-normal">30</td>
-                                <td class="text-sm font-normal leading-normal">2011/09/03</td>
-                                <td class="text-sm font-normal leading-normal">$345,000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Yuri Berry</td>
-                                <td class="text-sm font-normal leading-normal">Chief Marketing Officer (CMO)</td>
-                                <td class="text-sm font-normal leading-normal">New York</td>
-                                <td class="text-sm font-normal leading-normal">40</td>
-                                <td class="text-sm font-normal leading-normal">2009/06/25</td>
-                                <td class="text-sm font-normal leading-normal">$675,000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Caesar Vance</td>
-                                <td class="text-sm font-normal leading-normal">Pre-Sales Support</td>
-                                <td class="text-sm font-normal leading-normal">New York</td>
-                                <td class="text-sm font-normal leading-normal">21</td>
-                                <td class="text-sm font-normal leading-normal">2011/12/12</td>
-                                <td class="text-sm font-normal leading-normal">$106,450</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Doris Wilder</td>
-                                <td class="text-sm font-normal leading-normal">Sales Assistant</td>
-                                <td class="text-sm font-normal leading-normal">Sidney</td>
-                                <td class="text-sm font-normal leading-normal">23</td>
-                                <td class="text-sm font-normal leading-normal">2010/09/20</td>
-                                <td class="text-sm font-normal leading-normal">$85,600</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Angelica Ramos</td>
-                                <td class="text-sm font-normal leading-normal">Chief Executive Officer (CEO)</td>
-                                <td class="text-sm font-normal leading-normal">London</td>
-                                <td class="text-sm font-normal leading-normal">47</td>
-                                <td class="text-sm font-normal leading-normal">2009/10/09</td>
-                                <td class="text-sm font-normal leading-normal">$1,200,000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Gavin Joyce</td>
-                                <td class="text-sm font-normal leading-normal">Developer</td>
-                                <td class="text-sm font-normal leading-normal">Edinburgh</td>
-                                <td class="text-sm font-normal leading-normal">42</td>
-                                <td class="text-sm font-normal leading-normal">2010/12/22</td>
-                                <td class="text-sm font-normal leading-normal">$92,575</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Jennifer Chang</td>
-                                <td class="text-sm font-normal leading-normal">Regional Director</td>
-                                <td class="text-sm font-normal leading-normal">Singapore</td>
-                                <td class="text-sm font-normal leading-normal">28</td>
-                                <td class="text-sm font-normal leading-normal">2010/11/14</td>
-                                <td class="text-sm font-normal leading-normal">$357,650</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Brenden Wagner</td>
-                                <td class="text-sm font-normal leading-normal">Software Engineer</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">28</td>
-                                <td class="text-sm font-normal leading-normal">2011/06/07</td>
-                                <td class="text-sm font-normal leading-normal">$206,850</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Fiona Green</td>
-                                <td class="text-sm font-normal leading-normal">Chief Operating Officer (COO)</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">48</td>
-                                <td class="text-sm font-normal leading-normal">2010/03/11</td>
-                                <td class="text-sm font-normal leading-normal">$850,000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Shou Itou</td>
-                                <td class="text-sm font-normal leading-normal">Regional Marketing</td>
-                                <td class="text-sm font-normal leading-normal">Tokyo</td>
-                                <td class="text-sm font-normal leading-normal">20</td>
-                                <td class="text-sm font-normal leading-normal">2011/08/14</td>
-                                <td class="text-sm font-normal leading-normal">$163,000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Michelle House</td>
-                                <td class="text-sm font-normal leading-normal">Integration Specialist</td>
-                                <td class="text-sm font-normal leading-normal">Sidney</td>
-                                <td class="text-sm font-normal leading-normal">37</td>
-                                <td class="text-sm font-normal leading-normal">2011/06/02</td>
-                                <td class="text-sm font-normal leading-normal">$95,400</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Suki Burks</td>
-                                <td class="text-sm font-normal leading-normal">Developer</td>
-                                <td class="text-sm font-normal leading-normal">London</td>
-                                <td class="text-sm font-normal leading-normal">53</td>
-                                <td class="text-sm font-normal leading-normal">2009/10/22</td>
-                                <td class="text-sm font-normal leading-normal">$114,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Prescott Bartlett</td>
-                                <td class="text-sm font-normal leading-normal">Technical Author</td>
-                                <td class="text-sm font-normal leading-normal">London</td>
-                                <td class="text-sm font-normal leading-normal">27</td>
-                                <td class="text-sm font-normal leading-normal">2011/05/07</td>
-                                <td class="text-sm font-normal leading-normal">$145,000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Gavin Cortez</td>
-                                <td class="text-sm font-normal leading-normal">Team Leader</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">22</td>
-                                <td class="text-sm font-normal leading-normal">2008/10/26</td>
-                                <td class="text-sm font-normal leading-normal">$235,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Martena Mccray</td>
-                                <td class="text-sm font-normal leading-normal">Post-Sales support</td>
-                                <td class="text-sm font-normal leading-normal">Edinburgh</td>
-                                <td class="text-sm font-normal leading-normal">46</td>
-                                <td class="text-sm font-normal leading-normal">2011/03/09</td>
-                                <td class="text-sm font-normal leading-normal">$324,050</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Unity Butler</td>
-                                <td class="text-sm font-normal leading-normal">Marketing Designer</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">47</td>
-                                <td class="text-sm font-normal leading-normal">2009/12/09</td>
-                                <td class="text-sm font-normal leading-normal">$85,675</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Howard Hatfield</td>
-                                <td class="text-sm font-normal leading-normal">Office Manager</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">51</td>
-                                <td class="text-sm font-normal leading-normal">2008/12/16</td>
-                                <td class="text-sm font-normal leading-normal">$164,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Hope Fuentes</td>
-                                <td class="text-sm font-normal leading-normal">Secretary</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">41</td>
-                                <td class="text-sm font-normal leading-normal">2010/02/12</td>
-                                <td class="text-sm font-normal leading-normal">$109,850</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Vivian Harrell</td>
-                                <td class="text-sm font-normal leading-normal">Financial Controller</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">62</td>
-                                <td class="text-sm font-normal leading-normal">2009/02/14</td>
-                                <td class="text-sm font-normal leading-normal">$452,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Timothy Mooney</td>
-                                <td class="text-sm font-normal leading-normal">Office Manager</td>
-                                <td class="text-sm font-normal leading-normal">London</td>
-                                <td class="text-sm font-normal leading-normal">37</td>
-                                <td class="text-sm font-normal leading-normal">2008/12/11</td>
-                                <td class="text-sm font-normal leading-normal">$136,200</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Jackson Bradshaw</td>
-                                <td class="text-sm font-normal leading-normal">Director</td>
-                                <td class="text-sm font-normal leading-normal">New York</td>
-                                <td class="text-sm font-normal leading-normal">65</td>
-                                <td class="text-sm font-normal leading-normal">2008/09/26</td>
-                                <td class="text-sm font-normal leading-normal">$645,750</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Olivia Liang</td>
-                                <td class="text-sm font-normal leading-normal">Support Engineer</td>
-                                <td class="text-sm font-normal leading-normal">Singapore</td>
-                                <td class="text-sm font-normal leading-normal">64</td>
-                                <td class="text-sm font-normal leading-normal">2011/02/03</td>
-                                <td class="text-sm font-normal leading-normal">$234,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Bruno Nash</td>
-                                <td class="text-sm font-normal leading-normal">Software Engineer</td>
-                                <td class="text-sm font-normal leading-normal">London</td>
-                                <td class="text-sm font-normal leading-normal">38</td>
-                                <td class="text-sm font-normal leading-normal">2011/05/03</td>
-                                <td class="text-sm font-normal leading-normal">$163,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Sakura Yamamoto</td>
-                                <td class="text-sm font-normal leading-normal">Support Engineer</td>
-                                <td class="text-sm font-normal leading-normal">Tokyo</td>
-                                <td class="text-sm font-normal leading-normal">37</td>
-                                <td class="text-sm font-normal leading-normal">2009/08/19</td>
-                                <td class="text-sm font-normal leading-normal">$139,575</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Thor Walton</td>
-                                <td class="text-sm font-normal leading-normal">Developer</td>
-                                <td class="text-sm font-normal leading-normal">New York</td>
-                                <td class="text-sm font-normal leading-normal">61</td>
-                                <td class="text-sm font-normal leading-normal">2013/08/11</td>
-                                <td class="text-sm font-normal leading-normal">$98,540</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Finn Camacho</td>
-                                <td class="text-sm font-normal leading-normal">Support Engineer</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">47</td>
-                                <td class="text-sm font-normal leading-normal">2009/07/07</td>
-                                <td class="text-sm font-normal leading-normal">$87,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Serge Baldwin</td>
-                                <td class="text-sm font-normal leading-normal">Data Coordinator</td>
-                                <td class="text-sm font-normal leading-normal">Singapore</td>
-                                <td class="text-sm font-normal leading-normal">64</td>
-                                <td class="text-sm font-normal leading-normal">2012/04/09</td>
-                                <td class="text-sm font-normal leading-normal">$138,575</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Zenaida Frank</td>
-                                <td class="text-sm font-normal leading-normal">Software Engineer</td>
-                                <td class="text-sm font-normal leading-normal">New York</td>
-                                <td class="text-sm font-normal leading-normal">63</td>
-                                <td class="text-sm font-normal leading-normal">2010/01/04</td>
-                                <td class="text-sm font-normal leading-normal">$125,250</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Zorita Serrano</td>
-                                <td class="text-sm font-normal leading-normal">Software Engineer</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">56</td>
-                                <td class="text-sm font-normal leading-normal">2012/06/01</td>
-                                <td class="text-sm font-normal leading-normal">$115,000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Jennifer Acosta</td>
-                                <td class="text-sm font-normal leading-normal">Junior Javascript Developer</td>
-                                <td class="text-sm font-normal leading-normal">Edinburgh</td>
-                                <td class="text-sm font-normal leading-normal">43</td>
-                                <td class="text-sm font-normal leading-normal">2013/02/01</td>
-                                <td class="text-sm font-normal leading-normal">$75,650</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Cara Stevens</td>
-                                <td class="text-sm font-normal leading-normal">Sales Assistant</td>
-                                <td class="text-sm font-normal leading-normal">New York</td>
-                                <td class="text-sm font-normal leading-normal">46</td>
-                                <td class="text-sm font-normal leading-normal">2011/12/06</td>
-                                <td class="text-sm font-normal leading-normal">$145,600</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Hermione Butler</td>
-                                <td class="text-sm font-normal leading-normal">Regional Director</td>
-                                <td class="text-sm font-normal leading-normal">London</td>
-                                <td class="text-sm font-normal leading-normal">47</td>
-                                <td class="text-sm font-normal leading-normal">2011/03/21</td>
-                                <td class="text-sm font-normal leading-normal">$356,250</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Lael Greer</td>
-                                <td class="text-sm font-normal leading-normal">Systems Administrator</td>
-                                <td class="text-sm font-normal leading-normal">London</td>
-                                <td class="text-sm font-normal leading-normal">21</td>
-                                <td class="text-sm font-normal leading-normal">2009/02/27</td>
-                                <td class="text-sm font-normal leading-normal">$103,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Jonas Alexander</td>
-                                <td class="text-sm font-normal leading-normal">Developer</td>
-                                <td class="text-sm font-normal leading-normal">San Francisco</td>
-                                <td class="text-sm font-normal leading-normal">30</td>
-                                <td class="text-sm font-normal leading-normal">2010/07/14</td>
-                                <td class="text-sm font-normal leading-normal">$86,500</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Shad Decker</td>
-                                <td class="text-sm font-normal leading-normal">Regional Director</td>
-                                <td class="text-sm font-normal leading-normal">Edinburgh</td>
-                                <td class="text-sm font-normal leading-normal">51</td>
-                                <td class="text-sm font-normal leading-normal">2008/11/13</td>
-                                <td class="text-sm font-normal leading-normal">$183,000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Michael Bruce</td>
-                                <td class="text-sm font-normal leading-normal">Javascript Developer</td>
-                                <td class="text-sm font-normal leading-normal">Singapore</td>
-                                <td class="text-sm font-normal leading-normal">29</td>
-                                <td class="text-sm font-normal leading-normal">2011/06/27</td>
-                                <td class="text-sm font-normal leading-normal">$183,000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-sm font-normal leading-normal">Donna Snider</td>
-                                <td class="text-sm font-normal leading-normal">Customer Support</td>
-                                <td class="text-sm font-normal leading-normal">New York</td>
-                                <td class="text-sm font-normal leading-normal">27</td>
-                                <td class="text-sm font-normal leading-normal">2011/01/25</td>
-                                <td class="text-sm font-normal leading-normal">$112,000</td>
-                            </tr>
+
                         </tbody>
                     </table>
                 </div>
