@@ -32,8 +32,9 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <!-- Main Styling -->
     <link rel="stylesheet" href="{{ asset('assets/css/argon-dashboard-tailwind.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/datatables.css') }}">
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body
@@ -63,6 +64,11 @@
     <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
     <!-- main script file  -->
     <script src="{{ asset('assets/js/argon-dashboard-tailwind.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dropdown.js') }}"></script>
+    <script src="{{ asset('assets/js/fixed-plugin.js') }}"></script>
+    <script src="{{ asset('assets/js/navbar-sticky.js') }}"></script>
+    <script src="{{ asset('assets/js/sidenav-burger.js') }}"></script>
     <script src="{{ asset('assets/vendor/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables.js') }}"></script>
     <script>
