@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CandidateController;
 
 /*
@@ -28,6 +29,7 @@ Route::prefix('dashboard')->group (function () {
         return view('dashboard.kandidat');
     })->name('dashboard.kandidat');
     Route::resource('/candidate', CandidateController::class);
+    Route::resource('/user', UserController::class);
     Route::post('/candidate/delete-all', [CandidateController::class, 'deleteAll'])->name('candidate.delete-all');
 });
 Route::post('tmp-upload', [CandidateController::class, 'tmpUpload']);
