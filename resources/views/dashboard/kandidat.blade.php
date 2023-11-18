@@ -11,12 +11,6 @@
                         <button data-modal-target="add-candidate-modal" data-modal-toggle="add-candidate-modal" type="button"
                             class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add
                             User</button>
-                        <form action="{{ route('candidate.delete-all') }}" method="POST">
-                            @csrf
-                            <button type="submit"
-                                class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete
-                                All</button>
-                        </form>
                     </div>
                 </div>
                 <!-- Modal Create -->
@@ -58,7 +52,7 @@
                                     <div class="col-span-2">
                                         <label for="photo"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto</label>
-                                        <input id="filepondInput" type="file" name="photo">
+                                        <input id="filepondInput" type="file" name="photo" class="items-center justify-center">
                                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="photo">SVG,
                                             PNG, JPG or GIF (MAX. 800x400px).</p>
 
@@ -277,12 +271,14 @@
                                                                     <div class="col-span-2">
                                                                         <label for="photo"
                                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto</label>
+                                                                        {{-- image old show --}}
+                                                                        <img src="{{ asset('storage/public/Candidate/' . $candidate->photo) }}"
+                                                                            class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-7 w-7 md:h-9 md:w-9 rounded-xl"
+                                                                            alt="{{ $candidate->name }}" />
+                                                                        {{-- end image old show --}}
                                                                         <input id="filepondEdit" type="file"
-                                                                            name="photo"
-                                                                            value="{{ 'storage/public/Candidate/' . $candidate->photo }}">
+                                                                            name="photo">
 
-                                                                        <input type="hidden" name="old_photo"
-                                                                            value="{{ $candidate->photo }}">
                                                                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300"
                                                                             id="photo">SVG,
                                                                             PNG, JPG or GIF (MAX. 800x400px).</p>
@@ -324,7 +320,7 @@
                                                                         <label for="vision"
                                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Visi
                                                                             Misi</label>
-                                                                        <textarea class="summernote" name="vision" rows="4" value="{!! old('vision',$candidate->vision) !!}"></textarea>
+                                                                        <textarea class="summernote" name="vision" rows="4" value="{{ old('vision', $candidate->vision) }}"></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <button type="submit" data-id="{{ $candidate->id }}"

@@ -30,7 +30,11 @@ Route::prefix('dashboard')->group (function () {
     })->name('dashboard.kandidat');
     Route::resource('/candidate', CandidateController::class);
     Route::resource('/user', UserController::class);
-    Route::post('/candidate/delete-all', [CandidateController::class, 'deleteAll'])->name('candidate.delete-all');
+    Route::post('/import-users', [UserController::class, 'importUsers'])->name('user.import-users');
+    Route::post('/user/delete-all', [UserController::class, 'deleteAll'])->name('user.delete-all');
+    Route::post('/user/reset-all', [UserController::class, 'resetAll'])->name('user.reset-all');
+    Route::post('/user/reset/{user}', [UserController::class, 'reset'])->name('user.reset');
+
 });
 Route::post('tmp-upload', [CandidateController::class, 'tmpUpload']);
 Route::delete('tmp-delete', [CandidateController::class, 'tmpDelete']);

@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Imports\UsersImport;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -35,9 +38,18 @@ class UserController extends Controller
         User::create([
             'name' => $request->validated('name'),
             'username' => $request->validated('username'),
-            'password'=> Hash::make($request->validated('password')),
+            'password' => Hash::make($request->validated('password')),
         ]);
         return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan');
+    }
+
+    /**
+     * Import data from excel file.
+     */
+    public function importUsers(Request $request)
+    {
+        Excel::import(new UsersImport, $request->file);
+        return redirect()->route('user.index')->with('success', 'User berhasil diimport');
     }
 
     /**
@@ -65,7 +77,7 @@ class UserController extends Controller
         $user->update([
             'name' => $request->validated('name'),
             'username' => $request->validated('username'),
-            'password'=> Hash::make($request->validated('password')),
+            'password' => Hash::make($request->validated('password')),
         ]);
         return redirect()->route('user.index')->with('success', 'User berhasil diupdate');
     }
@@ -76,6 +88,34 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+        return redirect()->route('user.index')->with('success', 'User berhasil dihapus');
+    }
+
+    /**
+     * Reset is_voted status for all users.
+     */
+    public function resetAll()
+    {
+        User::where('is_voted', true)->update(['is_voted' => false]);
+        return redirect()->route('user.index')->with('success', 'User berhasil direset');
+    }
+
+    /**
+     * Reset is_voted status for a user.
+     */
+    public function reset(User $user)
+    {
+        $user->update(['is_voted' => false]);
+        return redirect()->route('user.index')->with('success', 'User berhasil direset');
+    }
+
+    /**
+     * Truncate all data from storage.
+     */
+
+    public function deleteAll()
+    {
+        User::truncate();
         return redirect()->route('user.index')->with('success', 'User berhasil dihapus');
     }
 }

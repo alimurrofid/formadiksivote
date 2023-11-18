@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name'); //nama
-            $table->string('username'); //username
+            $table->string('username')->unique(); //username
             $table->string('password'); //password
             $table->enum('role', ['admin', 'user'])->default('user'); //role
             $table->boolean('is_voted')->default(false); //status voting

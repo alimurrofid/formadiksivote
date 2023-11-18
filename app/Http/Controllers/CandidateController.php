@@ -144,14 +144,4 @@ class CandidateController extends Controller
         $candidate->delete();
         return response()->redirectTo(route('candidate.index'))->with('success', 'Candidate deleted successfully.');
     }
-
-    /**
-     * Truncate all data.
-     */
-
-    public function deleteAll()
-    {
-        Candidate::truncate();
-        return response()->redirectTo(route('candidate.index'))->with('success', 'Candidate truncated successfully.');
-    }
 }
