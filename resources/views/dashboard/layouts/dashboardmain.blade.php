@@ -35,6 +35,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/datatables.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
+    <!-- CSS Libraries -->
+    @stack('customCSS')
+    
 </head>
 
 <body
@@ -74,6 +78,9 @@
     <script>
         let table = new DataTable("#datatable-search");
     </script>
+
+    <!-- JS Libraries -->
+    @stack('customJS')
 </body>
 
 </html>

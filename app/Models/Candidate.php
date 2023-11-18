@@ -10,7 +10,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Candidate extends Model
 {
     use HasFactory;
-    protected  $guarded = ['id'];
+    protected $guarded = ['id'];
+    protected  $fillable =[
+        'voting_number',
+        'name',
+        'photo',
+        'major',
+        'department',
+        'vision',
+        'vote_count',
+    ];
+    protected $table = 'candidates';
 
     public function user()
     {

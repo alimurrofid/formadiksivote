@@ -11,7 +11,7 @@ class UpdateCandidateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class UpdateCandidateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'voting_number' => 'required|integer',
+            'name' => 'required|string',
+            'photo' => 'required|string',
+            'major' => 'required|string',
+            'department' => 'required|string',
+            'vision' => 'required',
         ];
     }
 }
