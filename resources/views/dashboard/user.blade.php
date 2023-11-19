@@ -7,7 +7,7 @@
                 class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                 <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 flex justify-between">
                     <h5 class="mb-0 dark:text-white">Table User</h5>
-                    <div class="flex">
+                    <div class="sm:flex">
                         <!-- Button Add User-->
                         <button data-modal-target="add-user-modal" data-modal-toggle="add-user-modal" type="button"
                             class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add
@@ -74,15 +74,15 @@
                         <!-- End Modal Import-->
 
                         <!-- ====== Reset All User is_voted ====== -->
-                        <form action="{{ route('user.reset-all') }}" method="POST" id="reset-form">
+                        <form action="{{ route('user.reset-all') }}" method="POST" id="reset-form" class="w-max">
                             @csrf
                             <button type="button" onclick="confirmResetAll()"
-                                class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:focus:ring-yellow-900">Reset</button>
+                                class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:focus:ring-yellow-900">Reset All</button>
                         </form>
                         <!-- ====== End Reset All User is_voted ====== -->
 
                         <!-- ====== Delete All User ====== -->
-                        <form action="{{ route('user.delete-all') }}" method="POST" id="delete-form">
+                        <form action="{{ route('user.delete-all') }}" method="POST" id="delete-form" class="w-max">
                             @csrf
                             <button type="button" onclick="confirmDeleteAll()"
                                 class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete
@@ -189,158 +189,164 @@
                     </div>
                 </div>
                 <!-- End Modal Create -->
-
-                <div class="p-6 table-responsive">
-                    <table class="table table-flush" datatable id="datatable-search">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>No</th>
-                                <th>Name</th>
-                                <th>Username</th>
-                                <th>Role</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($users as $user)
+                <div class="flex-auto px-0 pt-0 pb-2">
+                    <div class="p-6 overflow-x-auto">
+                        <table
+                            class="items-center w-full mb-0 align-top border-collapse dark:border-white/40 text-slate-500"
+                            datatable id="datatable-search">
+                            <thead class="thead-light">
                                 <tr>
-                                    <td class="text-sm font-normal leading-normal">{{ $loop->iteration }}</td>
-                                    <td class="text-sm font-normal leading-normal">{{ $user->name }}</td>
-                                    <td class="text-sm font-normal leading-normal">{{ $user->username }}</td>
-                                    <td class="text-sm font-normal leading-normal">{{ $user->role }}</td>
-                                    <td class="text-sm font-normal leading-normal">
-                                        @if ($user->is_voted == 0)
-                                            <span
-                                                class="bg-gradient-to-tl from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Belum</span>
-                                        @else
-                                            <form action="{{ route('user.reset', $user->id) }}" method="POST" id="reset-form-{{$user->id}}">
-                                                @csrf
-                                                <button type="button" onclick="confirmReset({{$user->id}})"
-                                                    class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Sudah</button>
-                                            </form>
-                                        @endif
-                                    </td>
-                                    <td class="flex flex-wrap text-sm font-normal leading-normal">
-                                        <!-- Button Edit User -->
-                                        <button data-modal-target="edit-user-modal{{ $user->id }}"
-                                            data-modal-toggle="edit-user-modal{{ $user->id }}" type="button"
-                                            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button>
-                                        <!-- End Button Edit User -->
+                                    <th>No</th>
+                                    <th>Name</th>
+                                    <th>Username</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <td class="text-sm font-normal leading-normal">{{ $loop->iteration }}</td>
+                                        <td class="text-sm font-normal leading-normal">{{ $user->name }}</td>
+                                        <td class="text-sm font-normal leading-normal">{{ $user->username }}</td>
+                                        <td class="text-sm font-normal leading-normal">{{ $user->role }}</td>
+                                        <td class="text-sm font-normal leading-normal">
+                                            @if ($user->is_voted == 0)
+                                                <span
+                                                    class="bg-gradient-to-tl from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Belum</span>
+                                            @else
+                                                <form action="{{ route('user.reset', $user->id) }}" method="POST"
+                                                    id="reset-form-{{ $user->id }}">
+                                                    @csrf
+                                                    <button type="button" onclick="confirmReset({{ $user->id }})"
+                                                        class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Sudah</button>
+                                                </form>
+                                            @endif
+                                        </td>
+                                        <td class="flex flex-wrap text-sm font-normal leading-normal">
+                                            <!-- Button Edit User -->
+                                            <button data-modal-target="edit-user-modal{{ $user->id }}"
+                                                data-modal-toggle="edit-user-modal{{ $user->id }}" type="button"
+                                                class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button>
+                                            <!-- End Button Edit User -->
 
-                                        <!-- Button Delete User -->
-                                        <a href="{{ route('user.destroy', $user->id) }}"
-                                            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
-                                            data-confirm-delete="true">Delete</a>
-                                        <!-- End Button Delete User -->
+                                            <!-- Button Delete User -->
+                                            <a href="{{ route('user.destroy', $user->id) }}"
+                                                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                                data-confirm-delete="true">Delete</a>
+                                            <!-- End Button Delete User -->
 
-                                        <!-- Modal Edit User -->
-                                        <div id="edit-user-modal{{ $user->id }}" tabindex="-1" aria-hidden="true"
-                                            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                            <div class="relative w-full max-w-md max-h-full p-4">
-                                                <!-- Modal content -->
-                                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                                    <!-- Modal header -->
-                                                    <div
-                                                        class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
-                                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                                            Edit User
-                                                        </h3>
-                                                        <button type="button"
-                                                            class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
-                                                            data-modal-toggle="edit-user-modal{{ $user->id }}">
-                                                            <svg class="w-3 h-3" aria-hidden="true"
-                                                                xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                                viewBox="0 0 14 14">
-                                                                <path stroke="currentColor" stroke-linecap="round"
-                                                                    stroke-linejoin="round" stroke-width="2"
-                                                                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                                            </svg>
-                                                            <span class="sr-only">Close modal</span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- Modal body edit-->
-                                                    <form action="{{ route('user.update', $user->id) }}"
-                                                        class="p-4 md:p-5" method="POST">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <div class="grid grid-cols-2 gap-4 mb-4">
-                                                            <div class="col-span-2">
-                                                                <label for="name"
-                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                                                                <input type="text" name="name" id="name"
-                                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('name') is-invalid @enderror"
-                                                                    placeholder="eg. Ali Murofid"
-                                                                    value="{{ old('name', $user->name) }}">
-                                                                @error('name')
-                                                                    <div class="mt-2 text-sm text-red-500">
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="col-span-2">
-                                                                <label for="username"
-                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-                                                                <input type="text" name="username" id="username"
-                                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('username') is-invalid @enderror"
-                                                                    placeholder="eg. Ali Murofid"
-                                                                    value="{{ old('username', $user->username) }}">
-                                                                @error('username')
-                                                                    <div class="mt-2 text-sm text-red-500">
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="col-span-2">
-                                                                <label for="password"
-                                                                    class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                                    Password <button type="button"
-                                                                        onclick="showPassword(), changetext()"><i
-                                                                            class="fa-regular fa-eye-slash"></i></button>
-                                                                </label>
-                                                                <input type="password"
-                                                                    class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
-                                                                    name="password"
-                                                                    value="{{ old('password', $user->password) }}">
-                                                                @error('password')
-                                                                    <div class="mt-2 text-sm text-red-500">
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
-                                                            <div class="col-span-2">
-                                                                <label for="confirm-password"
-                                                                    class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                                    Confirm Password <button type="button"
-                                                                        onclick="showConfPassword(), changeconftext()"><i
-                                                                            class="fa-regular fa-eye-slash"></i></button>
-                                                                </label>
-                                                                <input type="password"
-                                                                    class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
-                                                                    name="password_confirmation">
-                                                                @error('password_confirmation')
-                                                                    <div class="mt-2 text-sm text-red-500">
-                                                                        {{ $message }}
-                                                                    </div>
-                                                                @enderror
-                                                            </div>
+                                            <!-- Modal Edit User -->
+                                            <div id="edit-user-modal{{ $user->id }}" tabindex="-1"
+                                                aria-hidden="true"
+                                                class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                                <div class="relative w-full max-w-md max-h-full p-4">
+                                                    <!-- Modal content -->
+                                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                                        <!-- Modal header -->
+                                                        <div
+                                                            class="flex items-center justify-between p-4 border-b rounded-t md:p-5 dark:border-gray-600">
+                                                            <h3
+                                                                class="text-lg font-semibold text-gray-900 dark:text-white">
+                                                                Edit User
+                                                            </h3>
+                                                            <button type="button"
+                                                                class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dark:hover:bg-gray-600 dark:hover:text-white"
+                                                                data-modal-toggle="edit-user-modal{{ $user->id }}">
+                                                                <svg class="w-3 h-3" aria-hidden="true"
+                                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 14 14">
+                                                                    <path stroke="currentColor" stroke-linecap="round"
+                                                                        stroke-linejoin="round" stroke-width="2"
+                                                                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                                                </svg>
+                                                                <span class="sr-only">Close modal</span>
+                                                            </button>
                                                         </div>
-                                                        <button type="submit"
-                                                            class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                            <i class="pr-2 fa-regular fa-pen-to-square"></i>
-                                                            Edit User
-                                                        </button>
-                                                    </form>
+                                                        <!-- Modal body edit-->
+                                                        <form action="{{ route('user.update', $user->id) }}"
+                                                            class="p-4 md:p-5" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                                                <div class="col-span-2">
+                                                                    <label for="name"
+                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                                                    <input type="text" name="name" id="name"
+                                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('name') is-invalid @enderror"
+                                                                        placeholder="eg. Ali Murofid"
+                                                                        value="{{ old('name', $user->name) }}">
+                                                                    @error('name')
+                                                                        <div class="mt-2 text-sm text-red-500">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-span-2">
+                                                                    <label for="username"
+                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                                                                    <input type="text" name="username" id="username"
+                                                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('username') is-invalid @enderror"
+                                                                        placeholder="eg. Ali Murofid"
+                                                                        value="{{ old('username', $user->username) }}">
+                                                                    @error('username')
+                                                                        <div class="mt-2 text-sm text-red-500">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-span-2">
+                                                                    <label for="password"
+                                                                        class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                                        Password <button type="button"
+                                                                            onclick="showPassword(), changetext()"><i
+                                                                                class="fa-regular fa-eye-slash"></i></button>
+                                                                    </label>
+                                                                    <input type="password"
+                                                                        class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
+                                                                        name="password"
+                                                                        value="{{ old('password', $user->password) }}">
+                                                                    @error('password')
+                                                                        <div class="mt-2 text-sm text-red-500">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                                <div class="col-span-2">
+                                                                    <label for="confirm-password"
+                                                                        class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                                        Confirm Password <button type="button"
+                                                                            onclick="showConfPassword(), changeconftext()"><i
+                                                                                class="fa-regular fa-eye-slash"></i></button>
+                                                                    </label>
+                                                                    <input type="password"
+                                                                        class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
+                                                                        name="password_confirmation">
+                                                                    @error('password_confirmation')
+                                                                        <div class="mt-2 text-sm text-red-500">
+                                                                            {{ $message }}
+                                                                        </div>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit"
+                                                                class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                                <i class="pr-2 fa-regular fa-pen-to-square"></i>
+                                                                Edit User
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- End Modal Edit User -->
-                                    </td>
-                                </tr>
-                            @endforeach
+                                            <!-- End Modal Edit User -->
+                                        </td>
+                                    </tr>
+                                @endforeach
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             @include('dashboard.layouts.footer')
@@ -371,6 +377,7 @@
                 }
             });
         }
+
         function confirmResetAll() {
             Swal.fire({
                 title: 'Konfirmasi Reset',
@@ -398,6 +405,7 @@
                 }
             });
         }
+
         function confirmDeleteAll() {
             Swal.fire({
                 title: 'Konfirmasi Hapus',
