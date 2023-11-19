@@ -389,13 +389,9 @@
                                                 <!-- End Modal Edit -->
 
                                                 <!-- Button Delete Candidate -->
-                                                <form action="{{ route('candidate.destroy', $candidate->id) }}"
-                                                    method="post">
-                                                    @method('delete')
-                                                    @csrf
-                                                    <button type="submit"
-                                                        class="text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Delete</button>
-                                                </form>
+                                                <a href="{{ route('candidate.destroy', $candidate->id) }}"
+                                                    class="text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                                                    data-confirm-delete="true">Delete</a>
                                                 <!-- End Button Delete Candidate -->
                                             </div>
                                         </td>

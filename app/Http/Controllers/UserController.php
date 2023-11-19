@@ -9,6 +9,7 @@ use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -17,9 +18,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('dashboard.user', [
-            'users' => User::all()
-        ]);
+        $users = User::all();
+
+        $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+        return view('dashboard.user', compact('users'));
     }
     /**
      * Show the form for creating a new resource.
@@ -34,13 +38,19 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        Hash::make($request->password);
-        User::create([
-            'name' => $request->validated('name'),
-            'username' => $request->validated('username'),
-            'password' => Hash::make($request->validated('password')),
-        ]);
-        return redirect()->route('user.index')->with('success', 'User berhasil ditambahkan');
+        try {
+            User::create([
+                'name' => $request->validated('name'),
+                'username' => $request->validated('username'),
+                'password' => Hash::make($request->validated('password')),
+            ]);
+
+            Alert::success('Success', 'User berhasil ditambahkan');
+            return redirect()->route('user.index');
+        } catch (\Throwable $e) {
+            Alert::error('Error', 'Terjadi kesalahan saat menambahkan user');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -49,6 +59,7 @@ class UserController extends Controller
     public function importUsers(Request $request)
     {
         Excel::import(new UsersImport, $request->file);
+        Alert::success('Success', 'User berhasil diimport');
         return redirect()->route('user.index')->with('success', 'User berhasil diimport');
     }
 
@@ -73,13 +84,18 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        Hash::make($request->password);
-        $user->update([
-            'name' => $request->validated('name'),
-            'username' => $request->validated('username'),
-            'password' => Hash::make($request->validated('password')),
-        ]);
-        return redirect()->route('user.index')->with('success', 'User berhasil diupdate');
+        try {
+            $user->update([
+                'name' => $request->validated('name'),
+                'username' => $request->validated('username'),
+                'password' => Hash::make($request->validated('password')),
+            ]);
+            Alert::success('Success', 'User berhasil diupdate');
+            return redirect()->route('user.index');
+        } catch (\Throwable $e) {
+            Alert::error('Error', 'User Gagal diupdate');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -88,7 +104,8 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('user.index')->with('success', 'User berhasil dihapus');
+        Alert::success('Success', 'User berhasil dihapus');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -97,7 +114,7 @@ class UserController extends Controller
     public function resetAll()
     {
         User::where('is_voted', true)->update(['is_voted' => false]);
-        return redirect()->route('user.index')->with('success', 'User berhasil direset');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -106,7 +123,7 @@ class UserController extends Controller
     public function reset(User $user)
     {
         $user->update(['is_voted' => false]);
-        return redirect()->route('user.index')->with('success', 'User berhasil direset');
+        return redirect()->route('user.index');
     }
 
     /**
@@ -116,6 +133,6 @@ class UserController extends Controller
     public function deleteAll()
     {
         User::truncate();
-        return redirect()->route('user.index')->with('success', 'User berhasil dihapus');
+        return redirect()->route('user.index');
     }
 }

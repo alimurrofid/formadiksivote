@@ -35,10 +35,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/datatables.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
     <!-- CSS Libraries -->
     @stack('customCSS')
-    
+
 </head>
 
 <body
@@ -61,7 +61,10 @@
         <!-- end cards -->
     </main>
     @include('dashboard.layouts.setting')
+    <!--   Core JS Files   -->
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+    <!--  Sweet Alert  -->
+    @include('sweetalert::alert')
     <!-- plugin for charts  -->
     <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
     <!-- plugin for scrollbar  -->

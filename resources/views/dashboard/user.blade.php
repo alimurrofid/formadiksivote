@@ -74,17 +74,17 @@
                         <!-- End Modal Import-->
 
                         <!-- ====== Reset All User is_voted ====== -->
-                        <form action="{{ route('user.reset-all') }}" method="POST">
+                        <form action="{{ route('user.reset-all') }}" method="POST" id="reset-form">
                             @csrf
-                            <button type="submit"
+                            <button type="button" onclick="confirmResetAll()"
                                 class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:focus:ring-yellow-900">Reset</button>
                         </form>
                         <!-- ====== End Reset All User is_voted ====== -->
 
                         <!-- ====== Delete All User ====== -->
-                        <form action="{{ route('user.delete-all') }}" method="POST">
+                        <form action="{{ route('user.delete-all') }}" method="POST" id="delete-form">
                             @csrf
-                            <button type="submit"
+                            <button type="button" onclick="confirmDeleteAll()"
                                 class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete
                                 All</button>
                         </form>
@@ -122,7 +122,7 @@
                                         <label for="name"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                                         <input type="text" name="name" id="name"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 form-control @error('name') is-invalid @enderror"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('name') is-invalid @enderror"
                                             placeholder="eg. Ali Murofid">
                                         @error('name')
                                             <div class="mt-2 text-sm text-red-500">
@@ -134,7 +134,7 @@
                                         <label for="username"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
                                         <input type="text" name="username" id="username"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 form-control @error('username') is-invalid @enderror"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('username') is-invalid @enderror"
                                             placeholder="eg. Ali Murofid">
                                         @error('username')
                                             <div class="mt-2 text-sm text-red-500">
@@ -149,7 +149,7 @@
                                                     class="fa-regular fa-eye-slash"></i></button>
                                         </label>
                                         <input type="password"
-                                            class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('password') is-invalid @enderror"
+                                            class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
                                             name="password">
                                         @error('password')
                                             <div class="mt-2 text-sm text-red-500">
@@ -165,7 +165,7 @@
                                                     class="fa-regular fa-eye-slash"></i></button>
                                         </label>
                                         <input type="password"
-                                            class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('password') is-invalid @enderror"
+                                            class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
                                             name="password_confirmation">
                                         @error('password_confirmation')
                                             <div class="mt-2 text-sm text-red-500">
@@ -214,9 +214,9 @@
                                             <span
                                                 class="bg-gradient-to-tl from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Belum</span>
                                         @else
-                                            <form action="{{ route('user.reset', $user->id) }}" method="POST">
+                                            <form action="{{ route('user.reset', $user->id) }}" method="POST" id="reset-form-{{$user->id}}">
                                                 @csrf
-                                                <button type="submit"
+                                                <button type="button" onclick="confirmReset({{$user->id}})"
                                                     class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Sudah</button>
                                             </form>
                                         @endif
@@ -227,14 +227,13 @@
                                             data-modal-toggle="edit-user-modal{{ $user->id }}" type="button"
                                             class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button>
                                         <!-- End Button Edit User -->
+
                                         <!-- Button Delete User -->
-                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit"
-                                                class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
-                                        </form>
+                                        <a href="{{ route('user.destroy', $user->id) }}"
+                                            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                            data-confirm-delete="true">Delete</a>
                                         <!-- End Button Delete User -->
+
                                         <!-- Modal Edit User -->
                                         <div id="edit-user-modal{{ $user->id }}" tabindex="-1" aria-hidden="true"
                                             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -270,7 +269,7 @@
                                                                 <label for="name"
                                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                                                                 <input type="text" name="name" id="name"
-                                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 form-control @error('name') is-invalid @enderror"
+                                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('name') is-invalid @enderror"
                                                                     placeholder="eg. Ali Murofid"
                                                                     value="{{ old('name', $user->name) }}">
                                                                 @error('name')
@@ -283,7 +282,7 @@
                                                                 <label for="username"
                                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
                                                                 <input type="text" name="username" id="username"
-                                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 form-control @error('username') is-invalid @enderror"
+                                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('username') is-invalid @enderror"
                                                                     placeholder="eg. Ali Murofid"
                                                                     value="{{ old('username', $user->username) }}">
                                                                 @error('username')
@@ -300,7 +299,7 @@
                                                                             class="fa-regular fa-eye-slash"></i></button>
                                                                 </label>
                                                                 <input type="password"
-                                                                    class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('password') is-invalid @enderror"
+                                                                    class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
                                                                     name="password"
                                                                     value="{{ old('password', $user->password) }}">
                                                                 @error('password')
@@ -317,7 +316,7 @@
                                                                             class="fa-regular fa-eye-slash"></i></button>
                                                                 </label>
                                                                 <input type="password"
-                                                                    class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('password') is-invalid @enderror"
+                                                                    class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
                                                                     name="password_confirmation">
                                                                 @error('password_confirmation')
                                                                     <div class="mt-2 text-sm text-red-500">
@@ -348,3 +347,83 @@
         </div>
     </div>
 @endsection
+@push('customJS')
+    <script>
+        function confirmReset(id) {
+            Swal.fire({
+                title: 'Konfirmasi Reset',
+                text: 'User akan direset ulang!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Reset!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna mengklik "Ya, Hapus!", kirimkan permintaan penghapusan ke server
+                    document.getElementById('reset-form-' + id).submit();
+                    Swal.fire(
+                        'Direset!',
+                        'User berhasil direset.',
+                        'success'
+                    )
+                }
+            });
+        }
+        function confirmResetAll() {
+            Swal.fire({
+                title: 'Konfirmasi Reset',
+                html: '<input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500" placeholder="Masukkan password">',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Reset Semua!',
+                cancelButtonText: 'Batal',
+                preConfirm: () => {
+                    const password = Swal.getPopup().querySelector('#password').value;
+                    // Ganti dengan logika yang sesuai untuk memeriksa password yang dimasukkan
+                    // Misalnya, jika password benar, kirimkan permintaan penghapusan ke server
+                    if (password === 'password123') {
+                        document.getElementById('reset-form').submit();
+                        Swal.fire(
+                            'Dihapus!',
+                            'Semua Data User telah direset.',
+                            'success'
+                        );
+                    } else {
+                        Swal.showValidationMessage('Password salah');
+                    }
+                }
+            });
+        }
+        function confirmDeleteAll() {
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                html: '<input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-600 focus:border-red-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500" placeholder="Masukkan password">',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus Semua!',
+                cancelButtonText: 'Batal',
+                preConfirm: () => {
+                    const password = Swal.getPopup().querySelector('#password').value;
+                    // Ganti dengan logika yang sesuai untuk memeriksa password yang dimasukkan
+                    // Misalnya, jika password benar, kirimkan permintaan penghapusan ke server
+                    if (password === 'password123') {
+                        document.getElementById('delete-form').submit();
+                        Swal.fire(
+                            'Dihapus!',
+                            'Semua Data User telah dihapus.',
+                            'success'
+                        );
+                    } else {
+                        Swal.showValidationMessage('Password salah');
+                    }
+                }
+            });
+        }
+    </script>
+@endpush
