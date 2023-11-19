@@ -8,11 +8,16 @@
                 <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 flex justify-between">
                     <h5 class="mb-0 dark:text-white">Table User</h5>
                     <div class="flex">
+                        <!-- Button Add User-->
                         <button data-modal-target="add-user-modal" data-modal-toggle="add-user-modal" type="button"
                             class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add
                             User</button>
+                        <!-- End Button Add User-->
+
+                        <!-- Button Import User-->
                         <button type="button" data-modal-target="import-user-modal" data-modal-toggle="import-user-modal"
                             class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Import</button>
+                        <!-- End Button Import User-->
 
                         <!-- Modal Import-->
                         <div id="import-user-modal" tabindex="-1" aria-hidden="true"
@@ -74,6 +79,7 @@
                             <button type="submit"
                                 class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:focus:ring-yellow-900">Reset</button>
                         </form>
+                        <!-- ====== End Reset All User is_voted ====== -->
 
                         <!-- ====== Delete All User ====== -->
                         <form action="{{ route('user.delete-all') }}" method="POST">
@@ -82,6 +88,7 @@
                                 class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete
                                 All</button>
                         </form>
+                        <!-- ====== End Delete All User ====== -->
                     </div>
                 </div>
                 <!-- Modal Create -->
@@ -118,9 +125,9 @@
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 form-control @error('name') is-invalid @enderror"
                                             placeholder="eg. Ali Murofid">
                                         @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            <div class="mt-2 text-sm text-red-500">
+                                                {{ $message }}
+                                            </div>
                                         @enderror
                                     </div>
                                     <div class="col-span-2">
@@ -130,9 +137,9 @@
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 form-control @error('username') is-invalid @enderror"
                                             placeholder="eg. Ali Murofid">
                                         @error('username')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            <div class="mt-2 text-sm text-red-500">
+                                                {{ $message }}
+                                            </div>
                                         @enderror
                                     </div>
                                     <div class="col-span-2">
@@ -143,14 +150,13 @@
                                         </label>
                                         <input type="password"
                                             class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('password') is-invalid @enderror"
-                                            name="password" required autocomplete="new-password">
+                                            name="password">
                                         @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            <div class="mt-2 text-sm text-red-500">
+                                                {{ $message }}
+                                            </div>
                                         @enderror
                                     </div>
-
                                     <div class="col-span-2">
                                         <label for="confirm-password"
                                             class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -160,11 +166,11 @@
                                         </label>
                                         <input type="password"
                                             class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('password') is-invalid @enderror"
-                                            name="password_confirmation" required autocomplete="new-password">
+                                            name="password_confirmation">
                                         @error('password_confirmation')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            <div class="mt-2 text-sm text-red-500">
+                                                {{ $message }}
+                                            </div>
                                         @enderror
                                     </div>
                                 </div>
@@ -208,25 +214,28 @@
                                             <span
                                                 class="bg-gradient-to-tl from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Belum</span>
                                         @else
-                                        <form action="{{ route('user.reset',$user->id) }}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Sudah</button>
-                                        </form>
-                                            {{-- <span class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Sudah</span> --}}
+                                            <form action="{{ route('user.reset', $user->id) }}" method="POST">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Sudah</button>
+                                            </form>
                                         @endif
-                                        {{-- <span class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Sudah</span> --}}
                                     </td>
                                     <td class="flex flex-wrap text-sm font-normal leading-normal">
+                                        <!-- Button Edit User -->
                                         <button data-modal-target="edit-user-modal{{ $user->id }}"
                                             data-modal-toggle="edit-user-modal{{ $user->id }}" type="button"
                                             class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button>
+                                        <!-- End Button Edit User -->
+                                        <!-- Button Delete User -->
                                         <form action="{{ route('user.destroy', $user->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
                                                 class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
                                         </form>
-
+                                        <!-- End Button Delete User -->
+                                        <!-- Modal Edit User -->
                                         <div id="edit-user-modal{{ $user->id }}" tabindex="-1" aria-hidden="true"
                                             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                             <div class="relative w-full max-w-md max-h-full p-4">
@@ -265,9 +274,9 @@
                                                                     placeholder="eg. Ali Murofid"
                                                                     value="{{ old('name', $user->name) }}">
                                                                 @error('name')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <div class="mt-2 text-sm text-red-500">
+                                                                        {{ $message }}
+                                                                    </div>
                                                                 @enderror
                                                             </div>
                                                             <div class="col-span-2">
@@ -278,9 +287,9 @@
                                                                     placeholder="eg. Ali Murofid"
                                                                     value="{{ old('username', $user->username) }}">
                                                                 @error('username')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <div class="mt-2 text-sm text-red-500">
+                                                                        {{ $message }}
+                                                                    </div>
                                                                 @enderror
                                                             </div>
                                                             <div class="col-span-2">
@@ -292,15 +301,14 @@
                                                                 </label>
                                                                 <input type="password"
                                                                     class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('password') is-invalid @enderror"
-                                                                    name="password" required autocomplete="new-password"
+                                                                    name="password"
                                                                     value="{{ old('password', $user->password) }}">
                                                                 @error('password')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <div class="mt-2 text-sm text-red-500">
+                                                                        {{ $message }}
+                                                                    </div>
                                                                 @enderror
                                                             </div>
-
                                                             <div class="col-span-2">
                                                                 <label for="confirm-password"
                                                                     class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -310,12 +318,11 @@
                                                                 </label>
                                                                 <input type="password"
                                                                     class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 form-control @error('password') is-invalid @enderror"
-                                                                    name="password_confirmation" required
-                                                                    autocomplete="new-password">
+                                                                    name="password_confirmation">
                                                                 @error('password_confirmation')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
+                                                                    <div class="mt-2 text-sm text-red-500">
+                                                                        {{ $message }}
+                                                                    </div>
                                                                 @enderror
                                                             </div>
                                                         </div>
@@ -328,29 +335,10 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- End Modal Edit User -->
                                     </td>
                                 </tr>
                             @endforeach
-
-                            {{-- <tr>
-                                <td class="text-sm font-normal leading-normal">3</td>
-                                <td class="text-sm font-normal leading-normal">Rofids</td>
-                                <td class="text-sm font-normal leading-normal">Rofidganss123</td>
-                                <td class="text-sm font-normal leading-normal">12345</td>
-                                <td class="text-sm font-normal leading-normal">
-                                    <span
-                                        class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Sudah</span>
-                                </td>
-                                <td class="flex flex-wrap text-sm font-normal leading-normal">
-                                    <div class="flex items-center justify-center">
-                                        <button type="button"
-                                            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button>
-                                        <button type="button"
-                                            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
-                                    </div>
-
-                                </td>
-                            </tr> --}}
 
                         </tbody>
                     </table>

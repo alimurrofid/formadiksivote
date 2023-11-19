@@ -6,11 +6,13 @@
             <div
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                 <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 flex justify-between">
-                    <h5 class="mb-0 dark:text-white">Tabel candidate</h5>
+                    <h5 class="mb-0 dark:text-white">Table candidate</h5>
                     <div class="flex">
+                        <!-- Button Add Candidate -->
                         <button data-modal-target="add-candidate-modal" data-modal-toggle="add-candidate-modal" type="button"
                             class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add
-                            User</button>
+                            Candidate</button>
+                        <!-- End Button Add Candidate -->
                     </div>
                 </div>
                 <!-- Modal Create -->
@@ -46,43 +48,73 @@
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No
                                             Urut</label>
                                         <input type="text" name="voting_number"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('voting_number') is-invalid @enderror"
                                             placeholder="eg. 1">
+                                        @error('voting_number')
+                                            <div class="mt-2 text-sm text-red-500">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="col-span-2">
                                         <label for="photo"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto</label>
-                                        <input id="filepondInput" type="file" name="photo" class="items-center justify-center">
-                                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="photo">SVG,
-                                            PNG, JPG or GIF (MAX. 800x400px).</p>
-
+                                        <input id="filepondInput" type="file" name="photo"
+                                            class="items-center justify-center @error('photo') is-invalid @enderror">
+                                        @error('photo')
+                                            <div class="mt-2 text-sm text-red-500">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="photo">PNG, JPG or
+                                            JPEG (MAX. 2MB).</p>
                                     </div>
                                     <div class="col-span-2">
                                         <label for="name"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
                                         <input type="text" name="name"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500  @error('name') is-invalid @enderror"
                                             placeholder="eg. Ali Murofid">
+                                        @error('name')
+                                            <div class="mt-2 text-sm text-red-500">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="col-span-2">
                                         <label for="major"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jurusan</label>
                                         <input type="text" name="major"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('major') is-invalid @enderror"
                                             placeholder="eg. Teknologi Informasi">
+                                        @error('major')
+                                            <div class="mt-2 text-sm text-red-500">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="col-span-2">
                                         <label for="department"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prodi</label>
                                         <input type="text" name="department"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('department') is-invalid @enderror"
                                             placeholder="eg. D-IV Teknik Informatika">
+                                        @error('department')
+                                            <div class="mt-2 text-sm text-red-500">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                     <div class="col-span-2">
                                         <label for="vision"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Visi
                                             Misi</label>
-                                        <textarea class="summernote" name="vision" rows="4"></textarea>
+                                        <textarea class="summernote" name="vision" rows="4" class="@error('vision') is-invalid @enderror"></textarea>
+                                        @error('vision')
+                                            <div class="mt-2 text-sm text-red-500">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <button type="submit"
@@ -110,7 +142,7 @@
                                     </th>
                                     <th
                                         class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
-                                        candidate</th>
+                                        Kandidat</th>
                                     <th
                                         class="px-6 py-3 pl-2 font-bold text-center uppercase align-middle bg-transparent border-b border-collapse shadow-none dark:border-white/40 dark:text-white text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">
                                         Jurusan</th>
@@ -165,13 +197,16 @@
                                         </td>
                                         <td
                                             class="p-2 text-center align-middle bg-transparent border-b dark:border-white/40 shadow-transparent">
+                                            <!-- Button Show Candidate -->
                                             <span class="flex items-center justify-center">
                                                 <button data-modal-target="modal1{{ $candidate->id }}"
                                                     data-modal-toggle="modal1{{ $candidate->id }}"
                                                     class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                                     type="button">Show</button>
                                             </span>
+                                            <!-- End Button Show Candidate -->
 
+                                            <!-- Modal Show Candidate -->
                                             <div id="modal1{{ $candidate->id }}" tabindex="-1" aria-hidden="true"
                                                 class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                                 <div class="relative w-full max-w-2xl max-h-full p-4">
@@ -216,14 +251,17 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <!-- End Modal Show Candidate -->
                                         </td>
                                         <td
                                             class="p-2 align-middle bg-transparent border-b dark:border-white/40 whitespace-nowrap shadow-transparent">
                                             <div class="flex items-center justify-center">
+                                                <!-- Button Edit Candidate -->
                                                 <button data-modal-target="edit-candidate-modal{{ $candidate->id }}"
                                                     data-modal-toggle="edit-candidate-modal{{ $candidate->id }}"
                                                     type="button"
                                                     class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">Edit</button>
+                                                <!-- End Button Edit Candidate -->
 
                                                 <!-- Modal Edit -->
                                                 <div id="edit-candidate-modal{{ $candidate->id }}" tabindex="-1"
@@ -264,9 +302,14 @@
                                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No
                                                                             Urut</label>
                                                                         <input type="text" name="voting_number"
-                                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('voting_number') is-invalid @enderror"
                                                                             placeholder="eg. 1"
                                                                             value="{{ old('voting_number', $candidate->voting_number) }}">
+                                                                        @error('voting_number')
+                                                                            <div class="mt-2 text-sm text-red-500">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @enderror
                                                                     </div>
                                                                     <div class="col-span-2">
                                                                         <label for="photo"
@@ -277,55 +320,66 @@
                                                                             alt="{{ $candidate->name }}" />
                                                                         {{-- end image old show --}}
                                                                         <input id="filepondEdit" type="file"
-                                                                            name="photo">
-
+                                                                            name="photo"
+                                                                            class="@error('photo') is-invalid @enderror"
+                                                                            value="{{ old('photo', $candidate->photo) }}">
+                                                                        @error('photo')
+                                                                            <div class="mt-2 text-sm text-red-500">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @enderror
                                                                         <p class="mt-1 text-sm text-gray-500 dark:text-gray-300"
-                                                                            id="photo">SVG,
-                                                                            PNG, JPG or GIF (MAX. 800x400px).</p>
-
+                                                                            id="photo">PNG, JPG or JPEG (MAX. 2MB).</p>
                                                                     </div>
                                                                     <div class="col-span-2">
                                                                         <label for="name"
                                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
                                                                         <input type="text" name="name"
-                                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('name') is-invalid @enderror"
                                                                             placeholder="eg. Ali Murofid"
                                                                             value="{{ old('name', $candidate->name) }}">
+                                                                        @error('name')
+                                                                            <div class="mt-2 text-sm text-red-500">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @enderror
                                                                     </div>
                                                                     <div class="col-span-2">
                                                                         <label for="major"
                                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jurusan</label>
                                                                         <input type="text" name="major"
-                                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('major') is-invalid @enderror"
                                                                             placeholder="eg. Teknologi Informasi"
                                                                             value="{{ old('major', $candidate->major) }}">
+                                                                        @error('major')
+                                                                            <div class="mt-2 text-sm text-red-500">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @enderror
                                                                     </div>
                                                                     <div class="col-span-2">
                                                                         <label for="department"
                                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prodi</label>
                                                                         <input type="text" name="department"
-                                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('department') is-invalid @enderror"
                                                                             placeholder="eg. D-IV Teknik Informatika"
                                                                             value="{{ old('department', $candidate->department) }}">
+                                                                        @error('department')
+                                                                            <div class="mt-2 text-sm text-red-500">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @enderror
                                                                     </div>
-                                                                    {{-- <div class="col-span-2">
-                                                                        <label for="vision"
-                                                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Visi
-                                                                            Misi</label>
-                                                                        <textarea name="vision" rows="4" value="{!! old('vision', $candidate->vision) !!}"
-                                                                            class="summernote block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                            placeholder="Write your thoughts here..."></textarea>
-                                                                    </div> --}}
                                                                     <div class="col-span-2">
                                                                         <label for="vision"
                                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Visi
                                                                             Misi</label>
-                                                                        <textarea class="summernote" name="vision" rows="4" value="{{ old('vision', $candidate->vision) }}"></textarea>
+                                                                        <textarea class="summernote" name="vision" rows="4" class="@error('vision') is-invalid @enderror">{!! old('vision', $candidate->vision) !!}</textarea>
                                                                     </div>
                                                                 </div>
                                                                 <button type="submit" data-id="{{ $candidate->id }}"
                                                                     class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                                    <i class="pr-2 fa-solid fa-plus"></i>
+                                                                    <i class="pr-2 fa-regular fa-pen-to-square"></i>
                                                                     Edit candidate
                                                                 </button>
                                                             </form>
@@ -334,6 +388,7 @@
                                                 </div>
                                                 <!-- End Modal Edit -->
 
+                                                <!-- Button Delete Candidate -->
                                                 <form action="{{ route('candidate.destroy', $candidate->id) }}"
                                                     method="post">
                                                     @method('delete')
@@ -341,6 +396,7 @@
                                                     <button type="submit"
                                                         class="text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Delete</button>
                                                 </form>
+                                                <!-- End Button Delete Candidate -->
                                             </div>
                                         </td>
                                     </tr>
@@ -359,6 +415,8 @@
 @push('customCSS')
     <!-- filepond css -->
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet" />
 
     <!-- Summernote CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/summernote-0.8.18/summernote-lite.css') }}">

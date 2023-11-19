@@ -24,7 +24,7 @@ class StoreCandidateRequest extends FormRequest
         return [
             'voting_number' => 'required|integer',
             'name' => 'required|string',
-            'photo' => 'required|string',
+            'photo' => 'required|string|mimes:png,jpg,jpeg|max:2048',
             'major' => 'required|string',
             'department' => 'required|string',
             'vision' => 'required',
