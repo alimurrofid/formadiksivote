@@ -1,7 +1,6 @@
 @extends('dashboard.layouts.dashboardmain')
 @section('title', 'Home')
 @section('content')
-    <div class="w-full px-6 py-6 mx-auto">
         <!-- row 1 -->
         <div class="flex flex-wrap -mx-3">
             <!-- card1 -->
@@ -184,7 +183,6 @@
 
 
         @include('dashboard.partials.footer')
-    </div>
 @endsection
 @push('customJS')
     <script>
