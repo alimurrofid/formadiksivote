@@ -17,7 +17,13 @@ class UserSeeder extends Seeder
             'name' => 'Test User',
             'username' => 'test',
             'password' => bcrypt('test'),
-            'role' => 'admin',
+            'role' => 1,
+        ]);
+        User::create([
+            'name' => 'Test User 2',
+            'username' => 'user',
+            'password' => bcrypt('user'),
+            'role' => 0,
         ]);
         User::factory()->count(10)->create();
     }

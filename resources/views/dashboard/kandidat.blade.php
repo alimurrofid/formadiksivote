@@ -1,12 +1,12 @@
 @extends('dashboard.layouts.dashboardmain')
-@section('title', 'candidate')
+@section('title', 'Candidate')
 @section('content')
     <div class="flex flex-wrap -mx-3">
         <div class="flex-none w-full max-w-full px-3">
             <div
                 class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                 <div class="border-black/12.5 rounded-t-2xl border-b-0 border-solid p-6 flex justify-between">
-                    <h5 class="mb-0 dark:text-white">Table candidate</h5>
+                    <h5 class="mb-0 dark:text-white">Table Candidate</h5>
                     <div class="flex">
                         <!-- Button Add Candidate -->
                         <button data-modal-target="add-candidate-modal" data-modal-toggle="add-candidate-modal" type="button"
@@ -404,7 +404,7 @@
                     </div>
                 </div>
             </div>
-            @include('dashboard.layouts.footer')
+            @include('dashboard.partials.footer')
         </div>
     </div>
 @endsection

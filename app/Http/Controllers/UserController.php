@@ -2,17 +2,54 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hope;
 use App\Models\User;
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Models\Candidate;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
+    /**
+     * Display all candidates for voting.
+     */
+    public function userVote()
+    {
+        $candidates = Candidate::all();
+        return view('user.vote', compact('candidates'));
+    }
+    /**
+     * Submit vote for a candidate.
+     */
+    public function voteCandidate(Request $request)
+    {
+        $candidate = Candidate::find($request->candidate_id);
+        $candidate->vote_count += 1;
+        $candidate->save();
+
+        $user = User::find(Auth::user()->id);
+        $user->is_voted = true;
+        $user->candidate_id = $request->candidate_id;
+        $user->save();
+
+        $hope = new Hope();
+        $hope->candidate_id = $request->candidate_id;
+        $hope->desire = $request->desire;
+        $hope->save();
+
+        Auth::logout();
+
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+        Alert::success('Success', 'Terima kasih telah melakukan voting');
+        return redirect()->route('login');
+    }
     /**
      * Display a listing of the resource.
      */

@@ -46,13 +46,13 @@
     <div class="absolute w-full bg-blue-500 dark:hidden min-h-75"></div>
 
     <!-- sidenav  -->
-    @include('dashboard.layouts.sidenav')
+    @include('dashboard.partials.sidenav')
     <!-- end sidenav -->
 
     <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-68 rounded-xl">
 
         <!-- Navbar -->
-        @include('dashboard.layouts.navbar')
+        @include('dashboard.partials.navbar')
         <!-- end Navbar -->
         <div class="w-full px-6 py-6 mx-auto">
             <!-- cards -->
@@ -60,7 +60,7 @@
         </div>
         <!-- end cards -->
     </main>
-    @include('dashboard.layouts.setting')
+    @include('dashboard.partials.setting')
     <!--   Core JS Files   -->
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
     <!--  Sweet Alert  -->

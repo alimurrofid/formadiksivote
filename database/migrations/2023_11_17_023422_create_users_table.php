@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name'); //nama
             $table->string('username')->unique(); //username
             $table->string('password'); //password
-            $table->enum('role', ['admin', 'user'])->default('user'); //role
+            $table->tinyInteger('role')->default(0); //0 = user, 1 = admin
             $table->boolean('is_voted')->default(false); //status voting
             $table->foreignId('candidate_id')->nullable()->constrained('candidates')->onDelete('cascade'); //id kandidat
             $table->rememberToken(); //remember token

@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+    .nav {
+        @apply block relative mx-3 text-black dark:text-white tracking-[1px]
+        md:hover:bg-transparent md:border-0 md:p-0 my-6 md:my-0;
+    }
+    .nav::after {
+        @apply content-[''] bg-black dark:bg-white absolute w-0 h-[4px]
+        left-0 -bottom-[5px] rounded-xl duration-300;
+    }
+    .nav:hover::after {
+        @apply w-0 md:w-full;
+    }
+    .swiper {
+        @apply mt-20;
+    }
+
+    .swiper .swiper-slide {
+        @apply w-[300px];
+    }
+
+    .swiper-slide {
+        @apply bg-center bg-cover w-[300px] h-[300px];
+    }
+
+    .swiper-3d .swiper-slide-shadow-left,
+    .swiper-3d .swiper-slide-shadow-right {
+        @apply bg-none;
+    }
+}

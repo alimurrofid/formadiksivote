@@ -492,6 +492,6 @@
         </div>
     </div>
 
-    @include('dashboard.layouts.footer')
+    @include('dashboard.partials.footer')
 </div>
 @endsection
