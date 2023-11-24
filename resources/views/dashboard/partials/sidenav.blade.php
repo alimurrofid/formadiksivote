@@ -7,10 +7,10 @@
             sidenav-close></i>
         <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap dark:text-white text-slate-700"
             href="https://demos.creative-tim.com/argon-dashboard-tailwind/pages/dashboard.html" target="_blank">
-            <img src="{{asset('assets/images/logo-formadiksi.png')}}"
+            <img src="{{ asset('assets/images/logo-formadiksi.png') }}"
                 class="inline h-full max-w-full transition-all duration-200 dark:hidden ease-nav-brand max-h-8"
                 alt="main_logo" />
-            <img src="{{asset('assets/images/logo-formadiksi.png')}}"
+            <img src="{{ asset('assets/images/logo-formadiksi.png') }}"
                 class="hidden h-full max-w-full transition-all duration-200 dark:inline ease-nav-brand max-h-8"
                 alt="main_logo" />
             <span class="ml-1 font-semibold transition-all duration-200 ease-nav-brand">Pilketum Formadiksi</span>
@@ -24,7 +24,7 @@
         <ul class="flex flex-col pl-0 mb-0">
             <li class="mt-0.5 w-full">
                 <a class="py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
-                    href="{{route('dashboard.home')}}">
+                    href="{{ route('dashboard.home') }}">
                     <div
                         class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                         <i class="relative top-0 text-sm leading-normal text-blue-500 ni ni-tv-2"></i>
@@ -35,7 +35,7 @@
 
             <li class="mt-0.5 w-full">
                 <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                    href="{{route('candidate.index')}}">
+                    href="{{ route('candidate.index') }}">
                     <div
                         class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
                         <i class="relative top-0 text-sm leading-normal text-orange-500 ni ni-circle-08"></i>
@@ -46,7 +46,7 @@
 
             <li class="mt-0.5 w-full">
                 <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
-                    href="{{route('user.index')}}">
+                    href="{{ route('user.index') }}">
                     <div
                         class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
                         <i class="relative top-0 text-sm leading-normal text-emerald-500 ni ni-single-02"></i>
@@ -63,7 +63,7 @@
         </p>
         <div class="relative flex flex-col min-w-0 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border"
             sidenav-card>
-            <img class="w-1/2 mx-auto" src="{{asset('assets/img/illustrations/icon-documentation.svg')}}"
+            <img class="w-1/2 mx-auto" src="{{ asset('assets/img/illustrations/icon-documentation.svg') }}"
                 alt="sidebar illustrations" />
             <div class="flex-auto w-full p-4 pt-0 text-center">
                 <div class="transition-all duration-200 ease-nav-brand">
@@ -73,10 +73,25 @@
                 </div>
             </div>
         </div>
-        <a href="https://www.creative-tim.com/learning-lab/tailwind/html/quick-start/argon-dashboard/" target="_blank"
+        <!-- Button Documentation-->
+        <a href="https://linktr.ee/FormadiksiMroyek" target="_blank"
             class="inline-block w-full px-8 py-2 mb-4 text-xs font-bold leading-normal text-center text-white capitalize transition-all ease-in rounded-lg shadow-md bg-slate-700 bg-150 hover:shadow-xs hover:-translate-y-px">Documentation</a>
-        <!-- pro btn  -->
-        <a class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-green-500 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px">Start</a>
+        <!-- Button Start Voting  -->
+        @if ($VoteSession->session_run == 0)
+            <form action="{{ route('start-voting', $VoteSession->id) }}" method="post"
+                id="start-form-{{ $VoteSession->id }}">
+                @csrf
+                <button type="button" onclick="confirmStart({{ $VoteSession->id }})"
+                    class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-green-500 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px">Start</button>
+            </form>
+        @else
+            <form id="stop-form-{{ $VoteSession->id }}" action="{{ route('start-voting', $VoteSession->id) }}"
+                method="post">
+                @csrf
+                <button type="button" onclick="confirmStop({{ $VoteSession->id }})"
+                    class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-red-600 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px">Stop</button>
+            </form>
+        @endif
     </div>
 </aside>
 <!-- end sidenav -->

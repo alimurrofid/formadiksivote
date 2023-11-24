@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Hope;
 use App\Models\User;
 use App\Models\Candidate;
+use App\Models\VoteSession;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,7 +62,8 @@ class UserController extends Controller
         $title = 'Delete User!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
-        return view('dashboard.user', compact('users'));
+        $VoteSession = VoteSession::latest()->first();
+        return view('dashboard.user', compact('users','VoteSession'));
     }
     /**
      * Show the form for creating a new resource.

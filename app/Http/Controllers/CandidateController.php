@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Candidate;
-use App\Models\TemporaryFile;
+use App\Models\VoteSession;
 use Illuminate\Http\Request;
+use App\Models\TemporaryFile;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
-use PhpParser\Node\Stmt\TryCatch;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class CandidateController extends Controller
 {
@@ -48,7 +48,8 @@ class CandidateController extends Controller
         $title = 'Delete Candidate!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
-        return view('dashboard.kandidat', compact('candidates'));
+        $VoteSession = VoteSession::latest()->first();
+        return view('dashboard.kandidat', compact('candidates','VoteSession'));
     }
 
     /**

@@ -31,6 +31,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/user/delete-all', [UserController::class, 'deleteAll'])->name('user.delete-all');
         Route::post('/user/reset-all', [UserController::class, 'resetAll'])->name('user.reset-all');
         Route::post('/user/reset/{user}', [UserController::class, 'reset'])->name('user.reset');
+        Route::post('/{voteSession}/start-voting', [LoginController::class, 'startVoting'])->name('start-voting');
     });
     Route::post('tmp-upload', [CandidateController::class, 'tmpUpload']);
     Route::delete('tmp-delete', [CandidateController::class, 'tmpDelete']);

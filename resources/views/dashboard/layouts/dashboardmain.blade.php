@@ -78,8 +78,46 @@
     <script src="{{ asset('assets/js/sidenav-burger.js') }}"></script>
     <script src="{{ asset('assets/vendor/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/datatables.js') }}"></script>
+    
     <script>
         let table = new DataTable("#datatable-search");
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmStart(id) {
+            Swal.fire({
+                title: 'Konfirmasi Start Voting',
+                text: 'Yakin Memulai Voting?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#008170',
+                cancelButtonColor: '#898B8A',
+                confirmButtonText: 'Start!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna mengklik "Ya, Hapus!", kirimkan permintaan penghapusan ke server
+                    document.getElementById('start-form-' + id).submit();
+                }
+            });
+        }
+        function confirmStop(id) {
+            Swal.fire({
+                title: 'Konfirmasi Stop Voting',
+                text: 'Yakin Menghentikan Voting?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#898B8A',
+                confirmButtonText: 'Stop!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika pengguna mengklik "Ya, Hapus!", kirimkan permintaan penghapusan ke server
+                    document.getElementById('stop-form-' + id).submit();
+                }
+            });
+        }
     </script>
 
     <!-- JS Libraries -->
