@@ -20,7 +20,8 @@ class CandidateSeeder extends Seeder
             'photo' => 'https://i.ibb.co/0jZGZJd/1.jpg',
             'major' => 'Teknologi Informasi',
             'department' => 'Teknik Informatika',
-            'vision' => 'Lorem ipsum dolor sit amet'
+            'vision' => 'Lorem ipsum dolor sit amet',
+            'vote_count' => 204,
             ]);
         Candidate::create([
             'voting_number' => 2,
@@ -28,7 +29,8 @@ class CandidateSeeder extends Seeder
             'photo' => 'https://i.ibb.co/0jZGZJd/1.jpg',
             'major' => 'Teknologi Kimia',
             'department' => 'Teknik Kimia Industri',
-            'vision' => 'Lorem ipsum dolor sit amet'
+            'vision' => 'Lorem ipsum dolor sit amet',
+            'vote_count' => 310,
             ]);
         Candidate::create([
             'voting_number' => 3,
@@ -36,7 +38,8 @@ class CandidateSeeder extends Seeder
             'photo' => 'https://i.ibb.co/0jZGZJd/1.jpg',
             'major' => 'Teknologi Sipil',
             'department' => 'Manajemen Rekayasa Konstruksi',
-            'vision' => 'Lorem ipsum dolor sit amet'
+            'vision' => 'Lorem ipsum dolor sit amet',
+            'vote_count' => 100,
             ]);
     }
 }

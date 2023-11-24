@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\DashboardHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('dashboard')->group(function () {
-        Route::get('/', function () {
-            return view('dashboard.home');
-        })->name('dashboard.home');
+        Route::get('/', [DashboardHomeController::class, 'index'])->name('dashboard.home');
         Route::resource('/candidate', CandidateController::class);
         Route::resource('/user', UserController::class);
         Route::post('/import-users', [UserController::class, 'importUsers'])->name('user.import-users');
