@@ -40,6 +40,7 @@ class UserController extends Controller
 
         $hope = new Hope();
         $hope->candidate_id = $request->candidate_id;
+        $hope->user_id = Auth::user()->id;
         $hope->desire = $request->desire;
         $hope->save();
 
@@ -146,30 +147,37 @@ class UserController extends Controller
     }
 
     /**
-     * Reset is_voted status for all users.
+     * Reset is_voted status, relation candidate and hope for All user.
      */
     public function resetAll()
     {
-        User::where('is_voted', true)->update(['is_voted' => false]);
+        User::where('is_voted', true)->update(['is_voted' => false, 'candidate_id' => null]);
+        Candidate::where('vote_count', '>', 0)->update(['vote_count' => 0]);
+        Hope::truncate();
         return redirect()->route('user.index');
     }
 
     /**
-     * Reset is_voted status for a user.
+     * Reset is_voted status, relation candidate and hope for user.
      */
     public function reset(User $user)
     {
-        $user->update(['is_voted' => false]);
+        $user->candidate()->decrement('vote_count', 1);
+        $user->update(['is_voted' => false, 'candidate_id' => null]);
+        $user->hope()->delete();
         return redirect()->route('user.index');
     }
 
     /**
-     * Truncate all data from storage.
+     * Delete all user except admin.
      */
 
     public function deleteAll()
     {
-        User::truncate();
+        Candidate::where('vote_count', '>', 0)->update(['vote_count' => 0]);
+        //menghapus semua data pada tabel user kecuali admin
+        User::where('role', '!=', '1')->delete();
+        Hope::truncate();
         return redirect()->route('user.index');
     }
 }

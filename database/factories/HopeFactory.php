@@ -18,6 +18,7 @@ class HopeFactory extends Factory
     {
         return [
             'candidate_id' => $this->faker->numberBetween(1, 3),
+            'user_id' => $this->faker->numberBetween(2, 10),
             'desire' => $this->faker->paragraph(),
         ];
     }

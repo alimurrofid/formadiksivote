@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('hopes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); //id user
             $table->foreignId('candidate_id')->constrained('candidates')->onDelete('cascade'); //id kandidat
             $table->longText('desire'); //keinginan
             $table->timestamps();
