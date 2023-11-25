@@ -10,8 +10,14 @@
                     <div class="flex">
                         <!-- Button Add Candidate -->
                         <button data-modal-target="add-candidate-modal" data-modal-toggle="add-candidate-modal" type="button"
+                            data-tooltip-target="tooltip-addcandidate"
                             class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add
                             Candidate</button>
+                        <div id="tooltip-addcandidate" role="tooltip"
+                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                            Tambahkan Kandidat
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
                         <!-- End Button Add Candidate -->
                     </div>
                 </div>
@@ -200,9 +206,15 @@
                                             <!-- Button Show Candidate -->
                                             <span class="flex items-center justify-center">
                                                 <button data-modal-target="modal1{{ $candidate->id }}"
+                                                    data-tooltip-target="tooltip-vision{{ $candidate->id }}"
                                                     data-modal-toggle="modal1{{ $candidate->id }}"
                                                     class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                                     type="button">Show</button>
+                                                <div id="tooltip-vision{{ $candidate->id }}" role="tooltip"
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                    Lihat Visi Misi
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
                                             </span>
                                             <!-- End Button Show Candidate -->
 
@@ -259,8 +271,13 @@
                                                 <!-- Button Edit Candidate -->
                                                 <button data-modal-target="edit-candidate-modal{{ $candidate->id }}"
                                                     data-modal-toggle="edit-candidate-modal{{ $candidate->id }}"
-                                                    type="button"
+                                                    type="button" data-tooltip-target="tooltip-edit{{ $candidate->id }}"
                                                     class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">Edit</button>
+                                                <div id="tooltip-edit{{ $candidate->id }}" role="tooltip"
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                    Edit Kandidat
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
                                                 <!-- End Button Edit Candidate -->
 
                                                 <!-- Modal Edit -->
@@ -389,9 +406,14 @@
                                                 <!-- End Modal Edit -->
 
                                                 <!-- Button Delete Candidate -->
-                                                <a href="{{ route('candidate.destroy', $candidate->id) }}"
+                                                <a href="{{ route('candidate.destroy', $candidate->id) }}" data-tooltip-target="tooltip-delete{{ $candidate->id }}"
                                                     class="text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                                                     data-confirm-delete="true">Delete</a>
+                                                <div id="tooltip-delete{{ $candidate->id }}" role="tooltip"
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                    Lihat Visi Misi
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
                                                 <!-- End Button Delete Candidate -->
                                             </div>
                                         </td>

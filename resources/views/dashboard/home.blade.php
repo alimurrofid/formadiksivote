@@ -4,7 +4,8 @@
     <!-- row 1 -->
     <div class="flex flex-wrap -mx-3">
         <!-- card1 -->
-        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4"
+            data-tooltip-target="tooltip-candidate">
             <div
                 class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
@@ -27,9 +28,15 @@
                 </div>
             </div>
         </div>
+        <div id="tooltip-candidate" role="tooltip"
+            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+            Jumlah Kandidat
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
 
         <!-- card2 -->
-        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4"
+            data-tooltip-target="tooltip-userall">
             <div
                 class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
@@ -52,8 +59,14 @@
                 </div>
             </div>
         </div>
+        <div id="tooltip-userall" role="tooltip"
+            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+            Jumlah Semua User
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
         <!-- card3 -->
-        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4"
+            data-tooltip-target="tooltip-uservote">
             <div
                 class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
@@ -76,8 +89,14 @@
                 </div>
             </div>
         </div>
-        <!-- card3 -->
-        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4">
+        <div id="tooltip-uservote" role="tooltip"
+            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+            Jumlah User yang Sudah Memilih
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+        <!-- card4-->
+        <div class="w-full max-w-full px-3 mb-6 sm:w-1/2 sm:flex-none xl:mb-0 xl:w-1/4"
+            data-tooltip-target="tooltip-usernotvote">
             <div
                 class="relative flex flex-col min-w-0 break-words bg-white shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
                 <div class="flex-auto p-4">
@@ -99,6 +118,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="tooltip-usernotvote" role="tooltip"
+            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 tooltip">
+            Jumlah User yang Belum Memilih
+            <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
 
     </div>
