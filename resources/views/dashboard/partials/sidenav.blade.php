@@ -103,7 +103,7 @@
             </form>
         @endif
         <!-- Button Countdown-->
-        <a href="#" target="_blank" data-tooltip-target="tooltip-countdown"
+        <a href="{{route('countdown')}}" target="_blank" data-tooltip-target="tooltip-countdown"
             class="inline-block w-full px-8 py-2 mb-4 text-xs font-bold leading-normal text-center text-white capitalize transition-all ease-in bg-yellow-400 rounded-lg shadow-md bg-150 hover:shadow-xs hover:-translate-y-px"><i
                 class="pr-2 fa-solid fa-hourglass-start"></i>Countdown</a>
         <div id="tooltip-countdown" role="tooltip"

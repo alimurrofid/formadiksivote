@@ -32,11 +32,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/user/reset-all', [UserController::class, 'resetAll'])->name('user.reset-all');
         Route::post('/user/reset/{user}', [UserController::class, 'reset'])->name('user.reset');
         Route::post('/{voteSession}/start-voting', [LoginController::class, 'startVoting'])->name('start-voting');
+        Route::get('/countdown', [DashboardHomeController::class, 'countdown'])->name('countdown');
     });
     Route::post('tmp-upload', [CandidateController::class, 'tmpUpload']);
     Route::delete('tmp-delete', [CandidateController::class, 'tmpDelete']);
 });
-
+Route::get('/quick-count', [DashboardHomeController::class, 'quickcount'])->name('quickcount');
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

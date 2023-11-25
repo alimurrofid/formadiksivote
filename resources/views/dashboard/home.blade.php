@@ -142,7 +142,7 @@
                 </div>
                 <div class="flex-auto p-4">
                     <div>
-                        <canvas id="QuickVote" class="h-full"></canvas>
+                        <canvas id="QuickCount" class="h-full"></canvas>
                     </div>
                 </div>
             </div>
@@ -210,8 +210,8 @@
 @endsection
 @push('customJS')
     <script>
-        var ctx = document.getElementById("QuickVote");
-        var QuickVote = new Chart(ctx, {
+        var ctx = document.getElementById("QuickCount");
+        var QuickCount = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: [],
@@ -239,9 +239,9 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(data) {
-                    QuickVote.data.labels = data.name;
-                    QuickVote.data.datasets[0].data = data.vote_count;
-                    QuickVote.update();
+                    QuickCount.data.labels = data.name;
+                    QuickCount.data.datasets[0].data = data.vote_count;
+                    QuickCount.update();
                 },
                 error: function(data) {
                     console.log(data);

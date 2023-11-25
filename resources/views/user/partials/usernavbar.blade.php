@@ -24,16 +24,12 @@
                         <a href="#" class="nav">Beranda</a>
                     </li>
                     <li>
-                        <a href="#About" class="nav">Vote</a>
+                        <a href="{{route('login')}}" class="nav">Vote</a>
                     </li>
                     <li>
-                        <a href="#Portofolio" class="nav">Quick Count</a>
+                        <a href="{{route('quickcount')}}" class="nav">Quick Count</a>
                     </li>
                     <a href="{{route('login')}}" type="button" class="py-3 mx-3 text-sm text-white rounded-lg bg-slate-700 px-9 ">Login</a>
-                    <form action="{{route('logout')}}" method="post">
-                        @csrf
-                        <button type="submit" class="px-5 py-3 mx-3 text-sm text-white bg-red-700 rounded-lg "> Logout</button>
-                    </form>
                 </ul>
             </div>
         </div>
