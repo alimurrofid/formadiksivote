@@ -62,14 +62,14 @@
                                             <div class="col-span-2">
                                                 <label for="file"
                                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Import</label>
-                                                <input type="file" name="file"
-                                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
+                                                <input type="file" name="file" required
+                                                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 @error('file') is-invalid @enderror">
                                                 <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">XLS, XLXS or CSV.
                                                 </p>
                                                 @error('file')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
+                                                    <div class="mt-2 text-sm text-red-500">
+                                                        {{ $message }}
+                                                    </div>
                                                 @enderror
                                             </div>
 
@@ -144,7 +144,7 @@
                                     <div class="col-span-2">
                                         <label for="name"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                                        <input type="text" name="name" id="name"
+                                        <input type="text" name="name" id="name" required
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('name') is-invalid @enderror"
                                             placeholder="eg. Ali Murofid">
                                         @error('name')
@@ -156,7 +156,7 @@
                                     <div class="col-span-2">
                                         <label for="username"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
-                                        <input type="text" name="username" id="username"
+                                        <input type="text" name="username" id="username" required
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('username') is-invalid @enderror"
                                             placeholder="eg. Ali Murofid">
                                         @error('username')
@@ -171,7 +171,7 @@
                                             Password <button type="button" onclick="showPassword(), changetext()"><i
                                                     class="fa-regular fa-eye-slash"></i></button>
                                         </label>
-                                        <input type="password"
+                                        <input type="password" required
                                             class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
                                             name="password">
                                         @error('password')
@@ -187,7 +187,7 @@
                                                 onclick="showConfPassword(), changeconftext()"><i
                                                     class="fa-regular fa-eye-slash"></i></button>
                                         </label>
-                                        <input type="password"
+                                        <input type="password" required
                                             class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
                                             name="password_confirmation">
                                         @error('password_confirmation')
@@ -238,22 +238,23 @@
                                             @if ($user->is_voted == 0)
                                                 <span data-tooltip-target="tooltip-belum{{ $user->id }}"
                                                     class="bg-gradient-to-tl from-slate-600 to-slate-300 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Belum</span>
-                                                    <div id="tooltip-belum{{ $user->id }}" role="tooltip"
-                                                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                                        Belum Memilih
-                                                        <div class="tooltip-arrow" data-popper-arrow></div>
-                                                    </div>
+                                                <div id="tooltip-belum{{ $user->id }}" role="tooltip"
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                    Belum Memilih
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
                                             @else
                                                 <form action="{{ route('user.reset', $user->id) }}" method="POST"
                                                     id="reset-form-{{ $user->id }}">
                                                     @csrf
-                                                    <button type="button" onclick="confirmReset({{ $user->id }})" data-tooltip-target="tooltip-sudah{{ $user->id }}"
+                                                    <button type="button" onclick="confirmReset({{ $user->id }})"
+                                                        data-tooltip-target="tooltip-sudah{{ $user->id }}"
                                                         class="bg-gradient-to-tl from-emerald-500 to-teal-400 px-2.5 text-xs rounded-1.8 py-1.4 inline-block whitespace-nowrap text-center align-baseline font-bold uppercase leading-none text-white">Sudah</button>
-                                                        <div id="tooltip-sudah{{ $user->id }}" role="tooltip"
-                                                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                                            Sudah Memilih
-                                                            <div class="tooltip-arrow" data-popper-arrow></div>
-                                                        </div>
+                                                    <div id="tooltip-sudah{{ $user->id }}" role="tooltip"
+                                                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                        Sudah Memilih
+                                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                                    </div>
                                                 </form>
                                             @endif
                                         </td>
@@ -319,6 +320,7 @@
                                                                     <label for="name"
                                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                                                                     <input type="text" name="name" id="name"
+                                                                        required
                                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('name') is-invalid @enderror"
                                                                         placeholder="eg. Ali Murofid"
                                                                         value="{{ old('name', $user->name) }}">
@@ -332,6 +334,7 @@
                                                                     <label for="username"
                                                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
                                                                     <input type="text" name="username" id="username"
+                                                                        required
                                                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('username') is-invalid @enderror"
                                                                         placeholder="eg. Ali Murofid"
                                                                         value="{{ old('username', $user->username) }}">
@@ -348,7 +351,7 @@
                                                                             onclick="showPassword(), changetext()"><i
                                                                                 class="fa-regular fa-eye-slash"></i></button>
                                                                     </label>
-                                                                    <input type="password"
+                                                                    <input type="password" required
                                                                         class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
                                                                         name="password"
                                                                         value="{{ old('password', $user->password) }}">
@@ -365,7 +368,7 @@
                                                                             onclick="showConfPassword(), changeconftext()"><i
                                                                                 class="fa-regular fa-eye-slash"></i></button>
                                                                     </label>
-                                                                    <input type="password"
+                                                                    <input type="password" required
                                                                         class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
                                                                         name="password_confirmation">
                                                                     @error('password_confirmation')

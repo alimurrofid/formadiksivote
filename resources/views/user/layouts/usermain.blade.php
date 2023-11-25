@@ -23,6 +23,7 @@
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
 
     <!-- JS Libraries -->
+    @include('sweetalert::alert')
     @stack('customJS')
 </body>
 
