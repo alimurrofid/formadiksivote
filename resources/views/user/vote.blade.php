@@ -100,7 +100,4 @@
         @endforeach
 
     </div>
-
-    </div>
-
 @endsection

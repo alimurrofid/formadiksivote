@@ -10,8 +10,14 @@
                     <div class="flex">
                         <!-- Button Add Candidate -->
                         <button data-modal-target="add-candidate-modal" data-modal-toggle="add-candidate-modal" type="button"
+                            data-tooltip-target="tooltip-addcandidate"
                             class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add
                             Candidate</button>
+                        <div id="tooltip-addcandidate" role="tooltip"
+                            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                            Tambahkan Kandidat
+                            <div class="tooltip-arrow" data-popper-arrow></div>
+                        </div>
                         <!-- End Button Add Candidate -->
                     </div>
                 </div>
@@ -47,9 +53,9 @@
                                         <label for="voting_number"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No
                                             Urut</label>
-                                        <input type="text" name="voting_number"
+                                        <input type="text" name="voting_number" required
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('voting_number') is-invalid @enderror"
-                                            placeholder="eg. 1">
+                                            placeholder="eg. 1" value="{{ old('voting_number') }}">
                                         @error('voting_number')
                                             <div class="mt-2 text-sm text-red-500">
                                                 {{ $message }}
@@ -59,7 +65,7 @@
                                     <div class="col-span-2">
                                         <label for="photo"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Foto</label>
-                                        <input id="filepondInput" type="file" name="photo"
+                                        <input id="filepondInput" type="file" name="photo" required
                                             class="items-center justify-center @error('photo') is-invalid @enderror">
                                         @error('photo')
                                             <div class="mt-2 text-sm text-red-500">
@@ -72,9 +78,9 @@
                                     <div class="col-span-2">
                                         <label for="name"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                                        <input type="text" name="name"
+                                        <input type="text" name="name" required
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500  @error('name') is-invalid @enderror"
-                                            placeholder="eg. Ali Murofid">
+                                            placeholder="eg. Ali Murofid" value="{{ old('name') }}">
                                         @error('name')
                                             <div class="mt-2 text-sm text-red-500">
                                                 {{ $message }}
@@ -84,9 +90,9 @@
                                     <div class="col-span-2">
                                         <label for="major"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jurusan</label>
-                                        <input type="text" name="major"
+                                        <input type="text" name="major" required
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('major') is-invalid @enderror"
-                                            placeholder="eg. Teknologi Informasi">
+                                            placeholder="eg. Teknologi Informasi" value="{{ old('major') }}">
                                         @error('major')
                                             <div class="mt-2 text-sm text-red-500">
                                                 {{ $message }}
@@ -96,9 +102,9 @@
                                     <div class="col-span-2">
                                         <label for="department"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prodi</label>
-                                        <input type="text" name="department"
+                                        <input type="text" name="department" required
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('department') is-invalid @enderror"
-                                            placeholder="eg. D-IV Teknik Informatika">
+                                            placeholder="eg. D-IV Teknik Informatika" value="{{ old('department') }}">
                                         @error('department')
                                             <div class="mt-2 text-sm text-red-500">
                                                 {{ $message }}
@@ -109,7 +115,8 @@
                                         <label for="vision"
                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Visi
                                             Misi</label>
-                                        <textarea class="summernote" name="vision" rows="4" class="@error('vision') is-invalid @enderror"></textarea>
+                                        <textarea required class="summernote" name="vision" rows="4" class="@error('vision') is-invalid @enderror"
+                                            value="{!! old('vision') !!}"></textarea>
                                         @error('vision')
                                             <div class="mt-2 text-sm text-red-500">
                                                 {{ $message }}
@@ -200,9 +207,15 @@
                                             <!-- Button Show Candidate -->
                                             <span class="flex items-center justify-center">
                                                 <button data-modal-target="modal1{{ $candidate->id }}"
+                                                    data-tooltip-target="tooltip-vision{{ $candidate->id }}"
                                                     data-modal-toggle="modal1{{ $candidate->id }}"
                                                     class=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                                     type="button">Show</button>
+                                                <div id="tooltip-vision{{ $candidate->id }}" role="tooltip"
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                    Lihat Visi Misi
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
                                             </span>
                                             <!-- End Button Show Candidate -->
 
@@ -259,8 +272,13 @@
                                                 <!-- Button Edit Candidate -->
                                                 <button data-modal-target="edit-candidate-modal{{ $candidate->id }}"
                                                     data-modal-toggle="edit-candidate-modal{{ $candidate->id }}"
-                                                    type="button"
+                                                    type="button" data-tooltip-target="tooltip-edit{{ $candidate->id }}"
                                                     class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-400 dark:focus:ring-yellow-800">Edit</button>
+                                                <div id="tooltip-edit{{ $candidate->id }}" role="tooltip"
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                    Edit Kandidat
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
                                                 <!-- End Button Edit Candidate -->
 
                                                 <!-- Modal Edit -->
@@ -302,6 +320,7 @@
                                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No
                                                                             Urut</label>
                                                                         <input type="text" name="voting_number"
+                                                                            required
                                                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('voting_number') is-invalid @enderror"
                                                                             placeholder="eg. 1"
                                                                             value="{{ old('voting_number', $candidate->voting_number) }}">
@@ -319,7 +338,7 @@
                                                                             class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-7 w-7 md:h-9 md:w-9 rounded-xl"
                                                                             alt="{{ $candidate->name }}" />
                                                                         {{-- end image old show --}}
-                                                                        <input id="filepondEdit" type="file"
+                                                                        <input id="filepondEdit" type="file" required
                                                                             name="photo"
                                                                             class="@error('photo') is-invalid @enderror"
                                                                             value="{{ old('photo', $candidate->photo) }}">
@@ -334,7 +353,7 @@
                                                                     <div class="col-span-2">
                                                                         <label for="name"
                                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                                                                        <input type="text" name="name"
+                                                                        <input type="text" name="name" required
                                                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('name') is-invalid @enderror"
                                                                             placeholder="eg. Ali Murofid"
                                                                             value="{{ old('name', $candidate->name) }}">
@@ -347,7 +366,7 @@
                                                                     <div class="col-span-2">
                                                                         <label for="major"
                                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jurusan</label>
-                                                                        <input type="text" name="major"
+                                                                        <input type="text" name="major" required
                                                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('major') is-invalid @enderror"
                                                                             placeholder="eg. Teknologi Informasi"
                                                                             value="{{ old('major', $candidate->major) }}">
@@ -360,7 +379,7 @@
                                                                     <div class="col-span-2">
                                                                         <label for="department"
                                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prodi</label>
-                                                                        <input type="text" name="department"
+                                                                        <input type="text" name="department" required
                                                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 @error('department') is-invalid @enderror"
                                                                             placeholder="eg. D-IV Teknik Informatika"
                                                                             value="{{ old('department', $candidate->department) }}">
@@ -374,7 +393,12 @@
                                                                         <label for="vision"
                                                                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Visi
                                                                             Misi</label>
-                                                                        <textarea class="summernote" name="vision" rows="4" class="@error('vision') is-invalid @enderror">{!! old('vision', $candidate->vision) !!}</textarea>
+                                                                        <textarea required class="summernote" name="vision" rows="4" class="@error('vision') is-invalid @enderror">{!! old('vision', $candidate->vision) !!}</textarea>
+                                                                        @error('vision')
+                                                                            <div class="mt-2 text-sm text-red-500">
+                                                                                {{ $message }}
+                                                                            </div>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                                 <button type="submit" data-id="{{ $candidate->id }}"
@@ -390,8 +414,14 @@
 
                                                 <!-- Button Delete Candidate -->
                                                 <a href="{{ route('candidate.destroy', $candidate->id) }}"
+                                                    data-tooltip-target="tooltip-delete{{ $candidate->id }}"
                                                     class="text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 text-center m-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                                                     data-confirm-delete="true">Delete</a>
+                                                <div id="tooltip-delete{{ $candidate->id }}" role="tooltip"
+                                                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                    Hapus Kandidat
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
                                                 <!-- End Button Delete Candidate -->
                                             </div>
                                         </td>
@@ -446,7 +476,8 @@
         const pond = FilePond.create(inputElement);
         const editPond = FilePond.create(editElement);
         FilePond.setOptions({
-            // acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg'],
+            acceptedFileTypes: ['image/png', 'image/jpg', 'image/jpeg'],
+            maxFileSize: '2MB',
             server: {
                 // timeout: 7000,
                 process: '/tmp-upload',
@@ -458,37 +489,4 @@
             },
         });
     </script>
-    {{-- <script>
-        // Register the plugin
-        FilePond.registerPlugin(
-            // validates the size of the file...
-            FilePondPluginFileValidateSize,
-            // validates the file type...
-            FilePondPluginFileValidateType,
-            // preview the image file type...
-            FilePondPluginImagePreview,
-            // filter the image file type...
-        );
-        // Create a FilePond instance
-        FilePond.create(document.getElementById("filepond"), {
-            allowImagePreview: true,
-            allowImageFilter: false,
-            allowImageCrop: false,
-            acceptedFileTypes: ["image/png", "image/jpg", "image/jpeg"],
-            fileValidateTypeDetectType: (source, type) =>
-                new Promise((resolve, reject) => {
-                    // Do custom type detection here and return with promise
-                    resolve(type);
-                    FilePond.setOptions({
-                        server: {
-                            process: '/tmp-upload',
-                            revert: '/tmp-delete',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            }
-                        },
-                    });
-                }),
-        });
-    </script> --}}
 @endpush

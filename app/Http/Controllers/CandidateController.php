@@ -45,11 +45,11 @@ class CandidateController extends Controller
     public function index()
     {
         $candidates = Candidate::all();
-        $title = 'Delete Candidate!';
-        $text = "Are you sure you want to delete?";
+        $title = 'Hapus Kandidat!';
+        $text = "Apakah anda yakin ingin menghapus kandidat ini?";
         confirmDelete($title, $text);
         $VoteSession = VoteSession::latest()->first();
-        return view('dashboard.kandidat', compact('candidates','VoteSession'));
+        return view('dashboard.kandidat', compact('candidates', 'VoteSession'));
     }
 
     /**

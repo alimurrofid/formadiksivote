@@ -49,7 +49,7 @@ class UserController extends Controller
 
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        Alert::success('Success', 'Terima kasih telah melakukan voting');
+        Alert::toast('Terima kasih sudah melakukan voting', 'success');
         return redirect()->route('login');
     }
     /**
@@ -59,11 +59,11 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
+        $title = 'Hapus User!';
+        $text = "Apakah anda yakin ingin menghapus user ini?";
         confirmDelete($title, $text);
         $VoteSession = VoteSession::latest()->first();
-        return view('dashboard.user', compact('users','VoteSession'));
+        return view('dashboard.user', compact('users', 'VoteSession'));
     }
     /**
      * Show the form for creating a new resource.
@@ -98,9 +98,14 @@ class UserController extends Controller
      */
     public function importUsers(Request $request)
     {
-        Excel::import(new UsersImport, $request->file);
-        Alert::success('Success', 'User berhasil diimport');
-        return redirect()->route('user.index')->with('success', 'User berhasil diimport');
+        try {
+            Excel::import(new UsersImport, $request->file);
+            Alert::success('Success', 'User berhasil diimport');
+            return redirect()->route('user.index')->with('success', 'User berhasil diimport');
+        } catch (\Throwable $e) {
+            Alert::error('Error', 'Terjadi kesalahan saat mengimport user');
+            return redirect()->back();
+        }
     }
 
     /**

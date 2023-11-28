@@ -36,6 +36,7 @@ class LoginController extends Controller
         if (auth()->attempt(array('username' => $input['username'], 'password' => $input['password']))) {
             if (auth()->user()->role == 'admin') {
                 $request->session()->regenerate();
+                Alert::toast('Selamat datang ' . auth()->user()->name, 'success');
                 return redirect()->route('dashboard.home');
             } else if (auth()->user()->role == 'user') {
                 if (auth()->user()->is_voted == true) {
@@ -54,9 +55,8 @@ class LoginController extends Controller
                 return redirect()->route('user.vote');
             }
         }
-        return redirect()
-            ->route('login')
-            ->with('error', 'Incorrect username or password!.');
+        Alert::toast('Username atau password salah', 'error');
+        return redirect()->route('login');
     }
     public function logout()
     {
@@ -64,6 +64,7 @@ class LoginController extends Controller
 
         request()->session()->invalidate();
         request()->session()->regenerateToken();
+        Alert::toast('Anda berhasil logout', 'success');
         return redirect('/login');
     }
 }

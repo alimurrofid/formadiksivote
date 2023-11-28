@@ -73,25 +73,53 @@
                 </div>
             </div>
         </div>
-        <!-- Button Documentation-->
-        <a href="https://linktr.ee/FormadiksiMroyek" target="_blank"
-            class="inline-block w-full px-8 py-2 mb-4 text-xs font-bold leading-normal text-center text-white capitalize transition-all ease-in rounded-lg shadow-md bg-slate-700 bg-150 hover:shadow-xs hover:-translate-y-px">Documentation</a>
         <!-- Button Start Voting  -->
         @if ($VoteSession->session_run == 0)
             <form action="{{ route('start-voting', $VoteSession->id) }}" method="post"
                 id="start-form-{{ $VoteSession->id }}">
                 @csrf
                 <button type="button" onclick="confirmStart({{ $VoteSession->id }})"
-                    class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-green-500 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px">Start</button>
+                    data-tooltip-target="tooltip-start"
+                    class="inline-block w-full px-8 py-2 mb-4 text-xs font-bold leading-normal text-center text-white capitalize transition-all ease-in bg-green-600 rounded-lg shadow-md bg-150 hover:shadow-xs hover:-translate-y-px"><i
+                        class="pr-2 fa-solid fa-circle-play"></i>Start</button>
+                <div id="tooltip-start" role="tooltip"
+                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Mulai Pemilihan
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
             </form>
         @else
             <form id="stop-form-{{ $VoteSession->id }}" action="{{ route('start-voting', $VoteSession->id) }}"
                 method="post">
                 @csrf
-                <button type="button" onclick="confirmStop({{ $VoteSession->id }})"
-                    class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-red-600 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px">Stop</button>
+                <button type="button" onclick="confirmStop({{ $VoteSession->id }})" data-tooltip-target="tooltip-stop"
+                    class="inline-block w-full px-8 py-2 mb-4 text-xs font-bold leading-normal text-center text-white capitalize transition-all ease-in bg-red-600 rounded-lg shadow-md bg-150 hover:shadow-xs hover:-translate-y-px"><i
+                        class="pr-2 fa-solid fa-circle-stop"></i>Stop</button>
+                <div id="tooltip-stop" role="tooltip"
+                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                    Hentikan Pemilihan
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
             </form>
         @endif
+        <!-- Button Countdown-->
+        <a href="{{route('countdown')}}" target="_blank" data-tooltip-target="tooltip-countdown"
+            class="inline-block w-full px-8 py-2 mb-4 text-xs font-bold leading-normal text-center text-white capitalize transition-all ease-in bg-yellow-400 rounded-lg shadow-md bg-150 hover:shadow-xs hover:-translate-y-px"><i
+                class="pr-2 fa-solid fa-hourglass-start"></i>Countdown</a>
+        <div id="tooltip-countdown" role="tooltip"
+            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+            Hitung Mundur Pemilihan
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+        <!-- Button Documentation-->
+        <a href="https://linktr.ee/FormadiksiMroyek" data-tooltip-target="tooltip-documentation" target="_blank"
+            class="inline-block w-full px-8 py-2 mb-4 text-xs font-bold leading-normal text-center text-white capitalize transition-all ease-in rounded-lg shadow-md bg-slate-700 bg-150 hover:shadow-xs hover:-translate-y-px">Documentation</a>
+        <div id="tooltip-documentation" role="tooltip"
+            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+            Dokumentasi Penggunaan Website
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+
     </div>
 </aside>
 <!-- end sidenav -->
