@@ -2,8 +2,8 @@
 @section('title', 'Voting')
 @section('usercontent')
     <div class="flex flex-col items-center justify-center mb-10 mt-14">
-        <span class="text-sm font-semibold text-black/50 ">Quick Count Pilketum Formadiksi</span>
-        <span class="mt-3 text-xl font-semibold text-black">Yuk Pantau Perolehan Suara Kandidat Pilihanmu!</span>
+        <span class="text-sm font-semibold text-black/50 dark:text-white/70">Quick Count Pilketum Formadiksi</span>
+        <span class="md:mx-0 mx-16 text-center mt-3 md:text-xl text-base font-semibold text-black dark:text-white">Yuk Pantau Perolehan Suara <span class="text-slate-700 dark:text-gray-400">Kandidat</span> Pilihanmu!</span>
 
         <!-- Chart Quick vote -->
         <div class="w-full max-w-full px-3 mt-0 lg:w-7/12 lg:flex-none">
@@ -18,7 +18,7 @@
                 </div>
                 <div class="flex-auto p-4">
                     <div>
-                        <canvas id="QuickCount" class="h-full"></canvas>
+                        <canvas id="QuickCount" class="h-full bg-white dark:bg-neutral-900 text-black/50 dark:text-white/70"></canvas>
                     </div>
                 </div>
             </div>
