@@ -20,6 +20,7 @@ requirement:
 -   [Node.js](https://nodejs.org/en/download/)
 -   [Vscode](https://code.visualstudio.com/download)
 -   [Xampp](https://www.apachefriends.org/download.html)
+-   [Git](https://git-scm.com/downloads)
 
 Vscode Extension:
 
