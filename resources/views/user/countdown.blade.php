@@ -21,19 +21,19 @@
         </div>
 
         <div id="card" class="hidden mt-3">
-            <p class="text-xl font-semibold text-black">Selamat Kepada <span
+            <p class="text-xl font-semibold text-black dark:text-white">Selamat Kepada <span
                     class="font-bold text-blue-600 underline">{{ $candidate->name }}</span> Sebagai Ketua Umum Terpilih!</p>
 
             <div class="flex flex-wrap items-center justify-center mx-auto gap-7 mt-7">
                 <!-- Card Candidates -->
                 <div
-                    class="max-w-sm bg-white border border-black rounded-md shadow w-72 dark:bg-gray-800 dark:border-gray-700">
+                    class="max-w-sm bg-white border border-black rounded-md shadow w-72 dark:bg-neutral-900 dark:border-white">
                     <img class="rounded-t-md w-72 h-[384px]"
                         src="{{ asset('storage/public/Candidate/' . $candidate->photo) }}" alt="{{ $candidate->name }}" />
                     <div class="flex flex-col items-center justify-center mt-2">
-                        <span class="text-black/50">Kandidat #{{ $candidate->voting_number }}</span>
-                        <span class="mt-1 text-lg font-semibold text-black">{{ $candidate->name }}</span>
-                        <span class="mt-1 mb-6 text-sm text-black/50">{{ $candidate->major }} /
+                        <span class="text-black/50 dark:text-white/70">Kandidat #{{ $candidate->voting_number }}</span>
+                        <span class="mt-1 text-lg font-semibold text-black dark:text-white">{{ $candidate->name }}</span>
+                        <span class="mt-1 mb-6 text-sm text-black/50 dark:text-white/70">{{ $candidate->major }} /
                             {{ $candidate->department }}</span>
                     </div>
                 </div>
