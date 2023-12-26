@@ -1,7 +1,7 @@
 @extends('dashboard.layouts.dashboardmain')
 @section('title', 'Hope')
 @section('content')
-    <div class="flex flex-wrap mt-6 -mx-3">
+    <div class="flex flex-wrap -mx-3">
         <div class="w-full max-w-full px-3 flex-0">
             <div
                 class="relative flex flex-col min-w-0 break-words bg-white border-0 shadow-xl dark:bg-slate-850 dark:shadow-dark-xl rounded-2xl bg-clip-border">
