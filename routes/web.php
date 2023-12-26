@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\DashboardHomeController;
+use App\Http\Controllers\HopeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/user/reset/{user}', [UserController::class, 'reset'])->name('user.reset');
         Route::post('/{voteSession}/start-voting', [LoginController::class, 'startVoting'])->name('start-voting');
         Route::get('/countdown', [DashboardHomeController::class, 'countdown'])->name('countdown');
+        Route::get('/hope', [HopeController::class, 'index'])->name('hope.index');
     });
     Route::post('tmp-upload', [CandidateController::class, 'tmpUpload']);
     Route::delete('tmp-delete', [CandidateController::class, 'tmpDelete']);
@@ -41,6 +43,6 @@ Route::get('/quick-count', [DashboardHomeController::class, 'quickcount'])->name
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/', function(){
+Route::get('/', function () {
     return view('user.home');
 });
