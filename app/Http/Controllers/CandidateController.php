@@ -49,7 +49,7 @@ class CandidateController extends Controller
         $text = "Apakah anda yakin ingin menghapus kandidat ini?";
         confirmDelete($title, $text);
         $VoteSession = VoteSession::latest()->first();
-        return view('dashboard.kandidat', compact('candidates', 'VoteSession'));
+        return view('dashboard.candidate.index', compact('candidates', 'VoteSession'));
     }
 
     /**
@@ -57,7 +57,8 @@ class CandidateController extends Controller
      */
     public function create()
     {
-        //
+        $VoteSession = VoteSession::latest()->first();
+        return view('dashboard.candidate.create', compact('VoteSession'));
     }
 
     /**
@@ -123,11 +124,9 @@ class CandidateController extends Controller
      */
     public function edit(Candidate $candidate)
     {
+        $VoteSession = VoteSession::latest()->first();
         $candidate = Candidate::find($candidate->id);
-        return view('dashboard.kandidat', [
-            'candidate' => $candidate,
-            'candidates' => Candidate::all(),
-        ]);
+        return view('dashboard.candidate.edit', compact('candidate', 'VoteSession'));
     }
 
     /**

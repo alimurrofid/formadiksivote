@@ -45,7 +45,7 @@
                                     <span class="mt-2 text-sm text-black/50 dark:text-white/70">{{ $candidate->major }} /
                                         {{ $candidate->department }}</span>
                                     <div class="flex flex-col items-center justify-center text-black dark:text-white/70">
-                                        <p class="text-center">{{ $candidate->vision }}</p>
+                                        <p class="text-center">{!! $candidate->vision !!}</p>
                                     </div>
                                 </div>
                                 <!-- Modal footer -->
