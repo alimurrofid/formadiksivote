@@ -5,8 +5,7 @@
     <div class="h-19">
         <i class="absolute top-0 right-0 p-4 opacity-50 cursor-pointer fas fa-times dark:text-white text-slate-400 xl:hidden"
             sidenav-close></i>
-        <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap dark:text-white text-slate-700"
-            href="#">
+        <a class="block px-8 py-6 m-0 text-sm whitespace-nowrap dark:text-white text-slate-700" href="#">
             <img src="{{ asset('assets/images/logo-formadiksi.png') }}"
                 class="inline h-full max-w-full transition-all duration-200 dark:hidden ease-nav-brand max-h-8"
                 alt="main_logo" />
@@ -23,7 +22,7 @@
     <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
         <ul class="flex flex-col pl-0 mb-0">
             <li class="mt-0.5 w-full">
-                <a class="py-2.7 bg-blue-500/13 dark:text-white dark:opacity-80 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap rounded-lg px-4 font-semibold text-slate-700 transition-colors"
+                <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors {{ request()->routeIs('dashboard.home') ? 'font-semibold text-slate-700 rounded-lg bg-blue-500/13' : '' }}"
                     href="{{ route('dashboard.home') }}">
                     <div
                         class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -34,7 +33,7 @@
             </li>
 
             <li class="mt-0.5 w-full">
-                <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
+                <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors {{ request()->routeIs('candidate.index', 'candidate.create', 'candidate.edit') ? 'font-semibold text-slate-700 rounded-lg bg-blue-500/13' : '' }}"
                     href="{{ route('candidate.index') }}">
                     <div
                         class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center stroke-0 text-center xl:p-2.5">
@@ -45,7 +44,7 @@
             </li>
 
             <li class="mt-0.5 w-full">
-                <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
+                <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors {{ request()->routeIs('user.index') ? 'font-semibold text-slate-700 rounded-lg  bg-blue-500/13' : '' }}"
                     href="{{ route('user.index') }}">
                     <div
                         class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
@@ -54,9 +53,9 @@
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease">User</span>
                 </a>
             </li>
-            
+
             <li class="mt-0.5 w-full">
-                <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors"
+                <a class=" dark:text-white dark:opacity-80 py-2.7 text-sm ease-nav-brand my-0 mx-2 flex items-center whitespace-nowrap px-4 transition-colors {{ request()->routeIs('hope.index') ? 'font-semibold text-slate-700 rounded-lg bg-blue-500/13' : '' }}"
                     href="{{ route('hope.index') }}">
                     <div
                         class="mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-center fill-current stroke-0 text-center xl:p-2.5">
@@ -114,7 +113,7 @@
             </form>
         @endif
         <!-- Button Countdown-->
-        <a href="{{route('countdown')}}" target="_blank" data-tooltip-target="tooltip-countdown"
+        <a href="{{ route('countdown') }}" target="_blank" data-tooltip-target="tooltip-countdown"
             class="inline-block w-full px-8 py-2 mb-4 text-xs font-bold leading-normal text-center text-white capitalize transition-all ease-in bg-yellow-400 rounded-lg shadow-md bg-150 hover:shadow-xs hover:-translate-y-px"><i
                 class="pr-2 fa-solid fa-hourglass-start"></i>Countdown</a>
         <div id="tooltip-countdown" role="tooltip"
