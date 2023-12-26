@@ -1,4 +1,4 @@
-<nav class="py-3 bg-white shadow-lg md:bg-white dark:bg-neutral-900 md:dark:bg-neutral-900 px-7 md:px-28">
+<nav class="py-3 bg-white shadow-lg md:bg-white dark:bg-neutral-900 md:dark:bg-neutral-900 px-7 md:px-28 dark:shadow-white/10">
     <div class="flex items-center justify-between">
         <div>
 
@@ -21,7 +21,7 @@
                 <ul
                     class="md:flex text-center md:items-center bg-white md:bg-white dark:bg-neutral-900 md:dark:bg-neutral-900 z-10 md:py-0 py-4 md:w-auto md:z-auto md:static absolute w-full left-0 md:opacity-100 opacity-0 top-[-400px]">
                     <li>
-                        <a href="#" class="nav">Beranda</a>
+                        <a href="/" class="nav">Beranda</a>
                     </li>
                     <li>
                         <a href="{{route('login')}}" class="nav">Vote</a>

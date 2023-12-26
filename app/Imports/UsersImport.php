@@ -18,7 +18,6 @@ class UsersImport implements ToModel
             'name' => $row[1],
             'username' => $row[0],
             'password' => bcrypt($row[0]),
-            'is_voted' => $row[2],
         ]);
     }
 }

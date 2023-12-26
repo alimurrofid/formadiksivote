@@ -15,7 +15,7 @@
                                 <p
                                     class="mb-0 font-sans text-lg font-semibold leading-normal uppercase dark:text-white dark:opacity-60">
                                     Candidate</p>
-                                <h5 class="text-4xl font-bold dark:text-white">{{ $candidate_count }}</h5>
+                                <h5 class="text-4xl font-bold dark:text-white counter">{{ $candidate_count }}</h5>
                             </div>
                         </div>
                         <div class="px-3 text-right">
@@ -46,7 +46,7 @@
                                 <p
                                     class="mb-0 font-sans text-lg font-semibold leading-normal uppercase dark:text-white dark:opacity-60">
                                     All Users</p>
-                                <h5 class="text-4xl font-bold dark:text-white">{{ $user_count }}</h5>
+                                <h5 class="text-4xl font-bold dark:text-white counter">{{ $user_count }}</h5>
                             </div>
                         </div>
                         <div class="px-3 text-right">
@@ -76,7 +76,7 @@
                                 <p
                                     class="mb-0 font-sans text-lg font-semibold leading-normal uppercase dark:text-white dark:opacity-60">
                                     Already Vote</p>
-                                <h5 class="text-4xl font-bold dark:text-white">{{ $user_voted }}</h5>
+                                <h5 class="text-4xl font-bold dark:text-white counter">{{ $user_voted }}</h5>
                             </div>
                         </div>
                         <div class="px-3 text-right">
@@ -106,7 +106,7 @@
                                 <p
                                     class="mb-0 font-sans text-lg font-semibold leading-normal uppercase dark:text-white dark:opacity-60">
                                     Not yet Vote</p>
-                                <h5 class="text-4xl font-bold dark:text-white">{{ $user_not_voted }}</h5>
+                                <h5 class="text-4xl font-bold dark:text-white counter">{{ $user_not_voted }}</h5>
                             </div>
                         </div>
                         <div class="px-3 text-right">
@@ -209,6 +209,36 @@
     @include('dashboard.partials.footer')
 @endsection
 @push('customJS')
+    {{-- countUp.js --}}
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js"></script>
+    <script>
+        const counterUp = window.counterUp.default;
+
+        const callback = entries => {
+            entries.forEach(entry => {
+                const el = entry.target;
+                if (entry.isIntersecting && !el.classList.contains('is-visible')) {
+                    counterUp(el, {
+                        duration: 1000,
+                        delay: 6,
+                    });
+                    el.classList.add('is-visible');
+                }
+            });
+        };
+
+        const IO = new IntersectionObserver(callback, {
+            threshold: 1
+        });
+
+        // Mengamati setiap elemen dengan kelas 'counter'
+        const elements = document.querySelectorAll('.counter');
+        elements.forEach(el => {
+            IO.observe(el);
+        });
+    </script>
+
+    {{-- Chart.js --}}
     <script>
         var ctx = document.getElementById("QuickCount");
         var QuickCount = new Chart(ctx, {
