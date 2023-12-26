@@ -448,6 +448,10 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/summernote-0.8.18/summernote-lite.css') }}">
 @endpush
 @push('customJS')
+    <!-- Argon -->
+    <script src="{{ asset('assets/js/sidenav-burger.js') }}"></script>
+    <script src="{{ asset('assets/js/fixed-plugin.js') }}"></script>
+
     <!-- filepond validation -->
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>

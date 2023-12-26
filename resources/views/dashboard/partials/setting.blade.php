@@ -84,7 +84,7 @@
                         type="checkbox" />
                 </div>
             </div>
-            <a target="_blank"
+            {{-- <a target="_blank"
                 class="dark:border dark:border-solid dark:border-white inline-block w-full px-6 py-2.5 mb-4 font-bold leading-normal text-center text-white align-middle transition-all bg-transparent border border-solid border-transparent rounded-lg cursor-pointer text-sm ease-in hover:shadow-xs hover:-translate-y-px active:opacity-85 tracking-tight-rem shadow-md bg-150 bg-x-25 bg-gradient-to-tl from-zinc-800 to-zinc-700 dark:bg-gradient-to-tl dark:from-slate-750 dark:to-gray-850"
                 href="https://www.creative-tim.com/product/argon-dashboard-tailwind">Free Download</a>
             <a target="_blank"
@@ -102,7 +102,7 @@
                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/argon-dashboard-tailwind"
                     class="inline-block px-5 py-2.5 mb-0 mr-2 font-bold text-center text-white align-middle transition-all border-0  rounded-lg cursor-pointer hover:shadow-xs hover:-translate-y-px active:opacity-85 leading-normal text-sm ease-in tracking-tight-rem shadow-md bg-150 bg-x-25 me-2 border-slate-700 bg-slate-700"
                     target="_blank"> <i class="mr-1 fab fa-facebook-square"></i> Share </a>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

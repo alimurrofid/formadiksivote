@@ -402,6 +402,11 @@
     </div>
 @endsection
 @push('customJS')
+    <!-- Argon -->
+    <script src="{{ asset('assets/js/sidenav-burger.js') }}"></script>
+    <script src="{{ asset('assets/js/fixed-plugin.js') }}"></script>
+
+    <!-- konfirmasi -->
     <script>
         function confirmReset(id) {
             Swal.fire({
