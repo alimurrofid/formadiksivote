@@ -24,7 +24,7 @@
                         <a href="/" class="nav">Beranda</a>
                     </li>
                     <li>
-                        <a href="{{route('login')}}" class="nav">Vote</a>
+                        <a href="{{route('user.vote')}}" class="nav">Vote</a>
                     </li>
                     <li>
                         <a href="{{route('quickcount')}}" class="nav">Quick Count</a>
