@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\VoteConfirmRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
@@ -28,29 +29,34 @@ class UserController extends Controller
     /**
      * Submit vote for a candidate.
      */
-    public function voteCandidate(Request $request)
+    public function voteCandidate(VoteConfirmRequest $request)
     {
-        $candidate = Candidate::find($request->candidate_id);
-        $candidate->vote_count += 1;
-        $candidate->save();
-
-        $user = User::find(Auth::user()->id);
-        $user->is_voted = true;
-        $user->candidate_id = $request->candidate_id;
-        $user->save();
-
-        $hope = new Hope();
-        $hope->candidate_id = $request->candidate_id;
-        $hope->user_id = Auth::user()->id;
-        $hope->desire = $request->desire;
-        $hope->save();
-
-        Auth::logout();
-
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
-        Alert::toast('Terima kasih sudah melakukan voting', 'success');
-        return redirect()->route('login');
+        try {
+            $candidate = Candidate::find($request->candidate_id);
+            $candidate->vote_count += 1;
+            $candidate->save();
+    
+            $user = User::find(Auth::user()->id);
+            $user->is_voted = true;
+            $user->candidate_id = $request->candidate_id;
+            $user->save();
+    
+            $hope = new Hope();
+            $hope->candidate_id = $request->candidate_id;
+            $hope->user_id = Auth::user()->id;
+            $hope->desire = $request->desire;
+            $hope->save();
+    
+            Auth::logout();
+    
+            request()->session()->invalidate();
+            request()->session()->regenerateToken();
+            Alert::toast('Terima kasih sudah melakukan voting', 'success');
+            return redirect()->route('quickcount');
+        } catch (\Throwable $e) {
+            Alert::error('Error', 'Harapan wajiib diisi');
+            return redirect()->back();
+        }
     }
     /**
      * Display a listing of the resource.

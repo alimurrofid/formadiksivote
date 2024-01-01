@@ -79,7 +79,7 @@
                                         <span class="mt-2 text-lg font-semibold text-black dark:text-white">{{ $candidate->name }}</span>
                                         <span class="mt-2 text-sm text-black dark:text-white">Sebagai ketua umum Formadiksi?</span>
                                         <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
-                                        <textarea id="message" rows="4" name="desire"
+                                        <textarea id="message" rows="4" name="desire" required
                                             class="max-h-60 min-h-[100px] block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
                                             placeholder="Tuliskan harapan kamu..."></textarea>
                                     </div>
