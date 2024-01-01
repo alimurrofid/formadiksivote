@@ -8,10 +8,10 @@
             <img class="max-h-24 " src="{{ asset('assets/images/logo-formadiksi.png') }}" alt="">
             <span class="text-xl font-semibold text-black mt-7 dark:text-white ">Selamat Datang</span>
             <span class="mt-3 text-black/50 dark:text-white/50 ">Silahkan login terlebih dahulu</span>
-            <input type="text" id="username" name="username"
+            <input type="text" id="username" name="username" required
                 class=" mt-12 bg-gray-100 border border-gray-300 text-gray-900 rounded-md  block w-64 p-2.5"
                 placeholder="Username" value="{{ old('username') }}">
-            <input type="password" id="password" name="password"
+            <input type="password" id="password" name="password" required
                 class=" mt-4 bg-gray-100 border border-gray-300 text-gray-900 rounded-md  block w-64 p-2.5"
                 placeholder="Password">
             <div class="flex items-center mt-4 justify-normal ">
