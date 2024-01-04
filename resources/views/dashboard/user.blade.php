@@ -446,10 +446,10 @@
                     const password = Swal.getPopup().querySelector('#password').value;
                     // Ganti dengan logika yang sesuai untuk memeriksa password yang dimasukkan
                     // Misalnya, jika password benar, kirimkan permintaan penghapusan ke server
-                    if (password === 'password123') {
+                    if (password === 'resetuserall') {
                         document.getElementById('reset-form').submit();
                         Swal.fire(
-                            'Dihapus!',
+                            'Direset!',
                             'Semua Data User telah direset.',
                             'success'
                         );
@@ -474,7 +474,7 @@
                     const password = Swal.getPopup().querySelector('#password').value;
                     // Ganti dengan logika yang sesuai untuk memeriksa password yang dimasukkan
                     // Misalnya, jika password benar, kirimkan permintaan penghapusan ke server
-                    if (password === 'password123') {
+                    if (password === 'truncateuserall') {
                         document.getElementById('delete-form').submit();
                         Swal.fire(
                             'Dihapus!',
