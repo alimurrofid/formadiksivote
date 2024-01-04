@@ -1,5 +1,5 @@
 @extends('user.layouts.usermain')
-@section('title', 'Voting')
+@section('title', 'Quick Count')
 @section('usercontent')
     <div class="flex flex-col items-center justify-center mb-10 mt-14">
         <span class="text-sm font-semibold text-black/50 dark:text-white/70">Quick Count Pilketum Formadiksi</span>

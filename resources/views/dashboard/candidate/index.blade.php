@@ -197,4 +197,5 @@
     <!-- Argon -->
     <script src="{{ asset('assets/js/sidenav-burger.js') }}"></script>
     <script src="{{ asset('assets/js/fixed-plugin.js') }}"></script>
+    <script src="{{asset('build/assets/app-af0b7264.js')}}"></script>
 @endpush

@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/datatables.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    <link rel="stylesheet" href="{{asset('build/assets/app-0e00dbd6.css')}}">
     <!-- CSS Libraries -->
     @stack('customCSS')
 

@@ -13,6 +13,7 @@
     <script src="https://kit.fontawesome.com/e5c96fca62.js" crossorigin="anonymous"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{{asset('build/assets/app-0e00dbd6.css')}}">
 </head>
 
 <body class="overflow-x-hidden max-w-screen bg-white dark:bg-neutral-900">

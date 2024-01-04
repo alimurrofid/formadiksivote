@@ -1,5 +1,5 @@
 @extends('user.layouts.usermain')
-@section('title', 'Login')
+@section('title', 'Home')
 @section('usercontent')
 <div class="flex flex-wrap justify-between pt-10 my-10 lg:mx-20 mx-7 lg:my-20">
     <div class="basis-full lg:basis-1/2 w-[300px] lg:w-full">
