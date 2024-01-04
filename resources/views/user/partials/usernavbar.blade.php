@@ -19,7 +19,7 @@
             </span>
             <div class="bg-white dark:bg-neutral-900 ">
                 <ul
-                    class="shadow-md lg:shadow-none lg:flex text-center lg:items-center bg-white lg:bg-white dark:bg-neutral-900 lg:dark:bg-neutral-900 z-10 md:py-0 py-4 lg:w-auto lg:z-auto lg:static absolute w-full left-0 lg:opacity-100 opacity-0 top-[-400px]">
+                    class="shadow-md lg:shadow-none lg:flex text-center lg:items-center bg-white lg:bg-white dark:bg-neutral-900 lg:dark:bg-neutral-900 z-50 md:py-0 py-4 lg:w-auto lg:z-auto lg:static absolute w-full left-0 lg:opacity-100 opacity-0 top-[-400px]">
                     <li>
                         <a href="/" class="nav">Beranda</a>
                     </li>
