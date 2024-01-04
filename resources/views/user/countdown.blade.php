@@ -1,5 +1,5 @@
 @extends('user.layouts.usermain')
-@section('title', 'Voting')
+@section('title', 'Countdown')
 @section('usercontent')
     <div class="flex flex-col items-center justify-center">
         <div class="z-10">

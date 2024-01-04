@@ -1,12 +1,12 @@
 @extends('user.layouts.usermain')
-@section('title', 'Voting')
+@section('title', 'Quick Count')
 @section('usercontent')
     <div class="flex flex-col items-center justify-center mb-10 mt-14">
         <span class="text-sm font-semibold text-black/50 dark:text-white/70">Quick Count Pilketum Formadiksi</span>
-        <span class="mx-16 mt-3 text-base font-semibold text-center text-black md:mx-0 md:text-xl dark:text-white">Yuk Pantau Perolehan Suara <span class="text-slate-700 dark:text-gray-400">Kandidat</span> Pilihanmu!</span>
+        <span class="mx-16 mt-3 text-base font-semibold text-center text-black xl:mx-0 xl:text-xl dark:text-white">Yuk Pantau Perolehan Suara <span class="text-slate-700 dark:text-gray-400">Kandidat</span> Pilihanmu!</span>
 
         <!-- Chart Quick vote -->
-        <div class="w-full max-w-full px-3 mt-0 lg:w-7/12 lg:flex-none">
+        <div class="w-full max-w-full px-3 mt-5 lg:w-7/12 lg:flex-none">
             <div
                 class="border-black/12.5 dark:bg-neutral-900 shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border dark:shadow-lg dark:shadow-white/10">
                 <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid p-6 pt-4 pb-0">

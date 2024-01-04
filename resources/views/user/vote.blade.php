@@ -7,15 +7,15 @@
 
         @foreach ($candidates as $candidate)
             <!-- Card Candidates -->
-            <div class="flex flex-wrap items-center justify-center mx-auto gap-7">
+            <div class="flex flex-col xl:flex-row items-center justify-center mx-auto gap-7">
                 <div
-                    class="max-w-sm bg-white border border-black rounded-md shadow dark:border-white w-72 dark:bg-neutral-900">
-                    <img class="rounded-t-md w-72 h-[384px]"
+                    class="max-w-sm bg-white border border-black rounded-xl shadow dark:border-white w-72 dark:bg-neutral-900">
+                    <img class="rounded-t-xl w-72 h-[384px]"
                         src="{{ asset('storage/public/Candidate/' . $candidate->photo) }}" alt="{{ $candidate->name }}" />
                     <div class="flex flex-col items-center justify-center mt-7 ">
                         <span class="text-black/50 dark:text-white/70">Kandidat #{{ $candidate->voting_number }}</span>
                         <span class="mx-3 mt-2 text-lg font-semibold text-center text-black dark:text-white">{{ $candidate->name }}</span>
-                        <span class="mx-3 mt-2 text-sm text-center text-black/50 dark:text-white/70">{{ $candidate->major }} /
+                        <span class="w-[200px] mx-3 mt-2 text-sm text-center text-black/50 dark:text-white/70 overflow-hidden text-ellipsis">{{ $candidate->major }} /
                             {{ $candidate->department }}</span>
                         <button class="mt-3 text-black underline dark:text-white" data-modal-target="visimisi{{ $candidate->id }}"
                             data-modal-toggle="visimisi{{ $candidate->id }}">Lihat
@@ -26,18 +26,18 @@
                     </div>
                     <!-- Main modal -->
                     <div id="visimisi{{ $candidate->id }}" tabindex="-1" aria-hidden="true"
-                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full xl:inset-0 h-[calc(100%-1rem)] max-h-full">
                         <div class="relative w-full max-w-2xl max-h-full p-4">
                             <!-- Modal content -->
                             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                 <!-- Modal header -->
-                                <div class="flex items-center justify-center p-4 rounded-t md:p-5 ">
+                                <div class="flex items-center justify-center p-4 rounded-t xl:p-5 ">
                                     <h3 class="text-xl font-bold text-gray-900 dark:text-white">
                                         Informasi Kandidat #{{ $candidate->voting_number }}
                                     </h3>
                                 </div>
                                 <!-- Modal body -->
-                                <div class="flex flex-col items-center justify-center p-4 space-y-4 md:p-5">
+                                <div class="flex flex-col items-center justify-center p-4 space-y-4 xl:p-5">
                                     <img class="max-h-32"
                                         src="{{ asset('storage/public/Candidate/' . $candidate->photo) }}"
                                         alt="{{ $candidate->name }}">
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                                 <!-- Modal footer -->
-                                <div class="flex items-center justify-center p-4 md:p-5">
+                                <div class="flex items-center justify-center p-4 xl:p-5">
                                     <button data-modal-hide="visimisi{{ $candidate->id }}" type="button"
                                         class="py-3 mx-3 text-sm text-white rounded-lg bg-slate-700 px-9 dark:bg-slate-800">
                                         Kembali</button>
@@ -59,12 +59,12 @@
                     </div>
                     <!-- Main modal -->
                     <div id="vote{{ $candidate->id }}" tabindex="-1" aria-hidden="true"
-                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full xl:inset-0 h-[calc(100%-1rem)] max-h-full">
                         <div class="relative w-full max-w-2xl max-h-full p-4">
                             <!-- Modal content -->
                             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                 <!-- Modal header -->
-                                <div class="flex items-center justify-center p-4 rounded-t md:p-5 ">
+                                <div class="flex items-center justify-center p-4 rounded-t xl:p-5 ">
                                     <h3 class="text-xl font-bold text-gray-900 dark:text-white">
                                         Kamu yakin ingin memilih :
                                     </h3>
@@ -72,19 +72,19 @@
                                 <!-- Modal body -->
                                 <form action="{{ route('vote.candidate') }}" method="post">
                                     @csrf
-                                    <div class="flex flex-col items-center justify-center p-4 space-y-4 md:p-5">
+                                    <div class="flex flex-col items-center justify-center p-4 space-y-4 xl:p-5">
                                         <img class="max-h-32"
                                             src="{{ asset('storage/public/Candidate/' . $candidate->photo) }}"
                                             alt="{{ $candidate->name }}">
                                         <span class="mt-2 text-lg font-semibold text-black dark:text-white">{{ $candidate->name }}</span>
                                         <span class="mt-2 text-sm text-black dark:text-white">Sebagai ketua umum Formadiksi?</span>
                                         <input type="hidden" name="candidate_id" value="{{ $candidate->id }}">
-                                        <textarea id="message" rows="4" name="desire"
+                                        <textarea id="message" rows="4" name="desire" required
                                             class="max-h-60 min-h-[100px] block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300"
                                             placeholder="Tuliskan harapan kamu..."></textarea>
                                     </div>
                                     <!-- Modal footer -->
-                                    <div class="flex items-center justify-center p-4 md:p-5">
+                                    <div class="flex items-center justify-center p-4 xl:p-5">
 
                                         <button data-modal-hide="vote" type="submit"
                                             class="py-3 mx-3 text-sm text-white rounded-lg bg-slate-700 px-9 dark:bg-slate-800">
@@ -101,3 +101,6 @@
 
     </div>
 @endsection
+@push('customJS')
+<script src="{{asset('build/assets/app-af0b7264.js')}}"></script>
+@endpush
