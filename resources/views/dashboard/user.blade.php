@@ -405,6 +405,7 @@
     <!-- Argon -->
     <script src="{{ asset('assets/js/sidenav-burger.js') }}"></script>
     <script src="{{ asset('assets/js/fixed-plugin.js') }}"></script>
+    <script src="{{asset('build/assets/app-af0b7264.js')}}"></script>
 
     <!-- konfirmasi -->
     <script>
@@ -445,10 +446,10 @@
                     const password = Swal.getPopup().querySelector('#password').value;
                     // Ganti dengan logika yang sesuai untuk memeriksa password yang dimasukkan
                     // Misalnya, jika password benar, kirimkan permintaan penghapusan ke server
-                    if (password === 'password123') {
+                    if (password === 'resetuserall') {
                         document.getElementById('reset-form').submit();
                         Swal.fire(
-                            'Dihapus!',
+                            'Direset!',
                             'Semua Data User telah direset.',
                             'success'
                         );
@@ -473,7 +474,7 @@
                     const password = Swal.getPopup().querySelector('#password').value;
                     // Ganti dengan logika yang sesuai untuk memeriksa password yang dimasukkan
                     // Misalnya, jika password benar, kirimkan permintaan penghapusan ke server
-                    if (password === 'password123') {
+                    if (password === 'truncateuserall') {
                         document.getElementById('delete-form').submit();
                         Swal.fire(
                             'Dihapus!',

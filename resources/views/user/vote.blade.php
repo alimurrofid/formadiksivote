@@ -101,3 +101,6 @@
 
     </div>
 @endsection
+@push('customJS')
+<script src="{{asset('build/assets/app-af0b7264.js')}}"></script>
+@endpush
