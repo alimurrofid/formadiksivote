@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{asset('build/assets/app-0e00dbd6.css')}}">
 </head>
 
-<body class="overflow-x-hidden max-w-screen bg-white dark:bg-neutral-900">
+<body class="overflow-x-hidden bg-white dark:bg-neutral-900">
     @include('user.partials.usernavbar')
     @include('user.partials.background')
 
