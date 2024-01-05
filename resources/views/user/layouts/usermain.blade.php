@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
-<body class="overflow-x-hidden max-w-screen bg-white dark:bg-neutral-900">
+<body class="overflow-x-hidden bg-white dark:bg-neutral-900">
     @include('user.partials.usernavbar')
     @include('user.partials.background')
 
