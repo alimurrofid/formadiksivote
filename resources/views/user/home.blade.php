@@ -17,7 +17,7 @@
         <div class="absolute rounded-[4px] z-40 bg-slate-500 p-1 lg:px-4 px-3 -top-4 lg:left-[35%] left-[28%]">
             <span class=" lg:text-xs text-[10px] text-white">Video Tutorial Memilih</span>
         </div>
-        <iframe class="rounded-lg lg:w-[400px] w-[300px] lg:h-[265px] h-[165px]" src="https://www.youtube.com/embed/QFJhm2p7368?si=ZhO6G30vKX_g3z5T" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe class="rounded-lg lg:w-[400px] w-[300px] lg:h-[265px] h-[165px]" src="https://www.youtube.com/embed/DdYnGJDu2_M?si=B9kFSl8RwYXbi_vl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
 </div>
 
