@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('vote_sessions', function (Blueprint $table) {
             $table->id();
-            $table->integer('session_run')->default(5);
+            $table->integer('session_run')->default(0);
             $table->timestamps();
         });
     }
