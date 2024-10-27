@@ -259,11 +259,23 @@ if (navbar) {
 var dark_mode_toggle = document.querySelector("[dark-toggle]");
 var root_html = document.querySelector("html");
 
+// Ambil preferensi dari localStorage saat halaman dimuat
+if (localStorage.getItem("theme") === "dark") {
+  root_html.classList.add("dark");
+  dark_mode_toggle.checked = true; // Set checkbox ke posisi checked jika mode dark
+} else {
+  root_html.classList.remove("dark");
+  dark_mode_toggle.checked = false; // Set checkbox ke posisi unchecked jika mode light
+}
+
+// Event listener untuk perubahan toggle
 dark_mode_toggle.addEventListener("change", function () {
   dark_mode_toggle.setAttribute("manual", "true");
   if (this.checked) {
     root_html.classList.add("dark");
+    localStorage.setItem("theme", "dark"); // Simpan preferensi ke localStorage
   } else {
     root_html.classList.remove("dark");
+    localStorage.setItem("theme", "light"); // Simpan preferensi ke localStorage
   }
 });

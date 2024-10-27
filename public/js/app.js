@@ -1,40 +1,3 @@
-// function showPassword() {
-//     var x = document.getElementsByClassName("password")[0];
-//     for (var i =0; i < x.length; i++){
-//         if (x.type === "password") {
-//             x.type = "text";
-//           } else {
-//             x.type = "password";
-//           }
-//     }
-
-//   }
-//   function showConfPassword() {
-//     var y = document.getElementsByClassName("confirm-password")[0];
-//     if (y.type === "password") {
-//       y.type = "text";
-//     } else {
-//       y.type = "password";
-//     }
-//   }
-
-//   function changetext() {
-//     var x = document.getElementById("btnshow");
-//     if (x.innerHTML === '<i class="fa-regular fa-eye"></i></button>') {
-//       x.innerHTML = '<i class="fa-regular fa-eye-slash"></i>';
-//     } else {
-//       x.innerHTML = '<i class="fa-regular fa-eye"></i></button>';
-//     }
-//   }
-//   function changeconftext() {
-//     var y = document.getElementById("btnshowconf");
-//     if (y.innerHTML === '<i style="font-size: 16px" class="bx bxs-show"></i>') {
-//       y.innerHTML = '<i style="font-size : 16px" class="bx bxs-hide" ></i>';
-//     } else {
-//       y.innerHTML = '<i style="font-size: 16px" class="bx bxs-show"></i>';
-//     }
-//   }
-
 // Fungsi untuk menampilkan atau menyembunyikan password
 function showPassword() {
     var passwordInputs = document.getElementsByClassName("passwords");
@@ -103,30 +66,39 @@ function Menu(e) {
 
 const switchToggle = document.querySelector("#switch-toggle");
 const html = document.querySelector("html");
-let isDarkmode = false;
 
 const darkIcon = '<ion-icon name="moon"></ion-icon>';
 const lightIcon = '<ion-icon name="sunny"></ion-icon>';
 
+// Ambil preferensi dari localStorage jika ada
+let isDarkmode = localStorage.getItem("theme") === "dark" ? true : false;
+
+// Fungsi untuk toggle mode
 function toggleTheme() {
     isDarkmode = !isDarkmode;
     switchTheme();
 }
 
+// Fungsi untuk mengganti tema
 function switchTheme() {
     if (isDarkmode) {
         html.classList.add("dark");
         switchToggle.classList.remove("bg-white", "text-black");
         switchToggle.classList.add("bg-neutral-900", "text-white");
-        setTimeout(() => {
-            switchToggle.innerHTML = darkIcon;
-        });
+        switchToggle.innerHTML = darkIcon;
+
+        // Simpan preferensi dark mode di localStorage
+        localStorage.setItem("theme", "dark");
     } else {
         html.classList.remove("dark");
         switchToggle.classList.remove("bg-neutral-900", "text-white");
         switchToggle.classList.add("bg-white", "text-black");
-        setTimeout(() => {
-            switchToggle.innerHTML = lightIcon;
-        });
+        switchToggle.innerHTML = lightIcon;
+
+        // Simpan preferensi light mode di localStorage
+        localStorage.setItem("theme", "light");
     }
 }
+
+// Panggil switchTheme saat halaman dimuat untuk menerapkan preferensi
+document.addEventListener("DOMContentLoaded", switchTheme);
