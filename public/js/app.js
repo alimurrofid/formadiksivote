@@ -1,56 +1,49 @@
 // Fungsi untuk menampilkan atau menyembunyikan password
-function showPassword() {
-    var passwordInputs = document.getElementsByClassName("passwords");
-    Array.from(passwordInputs).forEach(function (input) {
-        if (input.type === "password") {
-            input.type = "text";
-        } else {
-            input.type = "password";
-        }
-    });
+function showPassword(userId = "") {
+    var passwordInput = document.querySelector(`#password${userId}`);
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+    } else {
+        passwordInput.type = "password";
+    }
 }
 
 // Fungsi untuk mengganti ikon tombol show/hide password
-function changeText() {
-    var buttons = document.getElementsByClassName("btnshow");
-    Array.from(buttons).forEach(function (button) {
-        var icon = button.querySelector("i");
-        if (icon.classList.contains("fa-eye-slash")) {
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
-        } else {
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
-        }
-    });
+function changeText(userId = "") {
+    var eyeIcon = document.querySelector(`#password${userId} + button i`);
+    if (eyeIcon.classList.contains("fa-eye-slash")) {
+        eyeIcon.classList.remove("fa-eye-slash");
+        eyeIcon.classList.add("fa-eye");
+    } else {
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+    }
 }
 
 // Fungsi untuk menampilkan atau menyembunyikan konfirmasi password
-function showConfPassword() {
-    var confPasswordInputs =
-        document.getElementsByClassName("confirm-password");
-    Array.from(confPasswordInputs).forEach(function (input) {
-        if (input.type === "password") {
-            input.type = "text";
-        } else {
-            input.type = "password";
-        }
-    });
+function showConfPassword(userId = "") {
+    var confPasswordInput = document.querySelector(
+        `#confirm-password${userId}`
+    );
+    if (confPasswordInput.type === "password") {
+        confPasswordInput.type = "text";
+    } else {
+        confPasswordInput.type = "password";
+    }
 }
 
 // Fungsi untuk mengganti ikon tombol show/hide konfirmasi password
-function changeConfText() {
-    var buttons = document.getElementsByClassName("btnshow-conf");
-    Array.from(buttons).forEach(function (button) {
-        var icon = button.querySelector("i");
-        if (icon.classList.contains("fa-eye-slash")) {
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
-        } else {
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
-        }
-    });
+function changeConfText(userId = "") {
+    var eyeIcon = document.querySelector(
+        `#confirm-password${userId} + button i`
+    );
+    if (eyeIcon.classList.contains("fa-eye-slash")) {
+        eyeIcon.classList.remove("fa-eye-slash");
+        eyeIcon.classList.add("fa-eye");
+    } else {
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+    }
 }
 
 function Menu(e) {

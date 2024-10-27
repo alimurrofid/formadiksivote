@@ -167,35 +167,49 @@
                                     </div>
                                     <div class="col-span-2">
                                         <label for="password"
-                                            class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                            Password <button type="button" onclick="showPassword(), changetext()"><i
-                                                    class="fa-regular fa-eye-slash"></i></button>
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            Password
                                         </label>
-                                        <input type="password" required
-                                            class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
-                                            name="password">
+                                        <div class="relative">
+                                            <input type="password" name="password" id="password" required
+                                                class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
+                                                placeholder="Password">
+                                            <button type="button"
+                                                class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400"
+                                                onclick="showPassword(), changeText()">
+                                                <i class="fa-regular fa-eye-slash"></i>
+                                            </button>
+                                        </div>
                                         @error('password')
                                             <div class="mt-2 text-sm text-red-500">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                     </div>
+
                                     <div class="col-span-2">
                                         <label for="confirm-password"
-                                            class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                            Confirm Password <button type="button"
-                                                onclick="showConfPassword(), changeconftext()"><i
-                                                    class="fa-regular fa-eye-slash"></i></button>
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                            Confirm Password
                                         </label>
-                                        <input type="password" required
-                                            class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
-                                            name="password_confirmation">
+                                        <div class="relative">
+                                            <input type="password" name="password_confirmation" id="confirm-password"
+                                                required
+                                                class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password_confirmation') is-invalid @enderror"
+                                                placeholder="Confirm Password">
+                                            <button type="button"
+                                                class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400"
+                                                onclick="showConfPassword(), changeConfText()">
+                                                <i class="fa-regular fa-eye-slash"></i>
+                                            </button>
+                                        </div>
                                         @error('password_confirmation')
                                             <div class="mt-2 text-sm text-red-500">
                                                 {{ $message }}
                                             </div>
                                         @enderror
                                     </div>
+
                                 </div>
                                 <button type="submit"
                                     class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -345,16 +359,21 @@
                                                                     @enderror
                                                                 </div>
                                                                 <div class="col-span-2">
-                                                                    <label for="password"
-                                                                        class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                                        Password <button type="button"
-                                                                            onclick="showPassword(), changetext()"><i
-                                                                                class="fa-regular fa-eye-slash"></i></button>
+                                                                    <label for="password{{ $user->id }}"
+                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                                        Password
                                                                     </label>
-                                                                    <input type="password" required
-                                                                        class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
-                                                                        name="password"
-                                                                        value="{{ old('password', $user->password) }}">
+                                                                    <div class="relative">
+                                                                        <input type="password" name="password"
+                                                                            id="password{{ $user->id }}"
+                                                                            class="passwords bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
+                                                                            placeholder="Password">
+                                                                        <button type="button"
+                                                                            class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400"
+                                                                            onclick="showPassword('{{ $user->id }}'), changeText('{{ $user->id }}')">
+                                                                            <i class="fa-regular fa-eye-slash"></i>
+                                                                        </button>
+                                                                    </div>
                                                                     @error('password')
                                                                         <div class="mt-2 text-sm text-red-500">
                                                                             {{ $message }}
@@ -362,15 +381,22 @@
                                                                     @enderror
                                                                 </div>
                                                                 <div class="col-span-2">
-                                                                    <label for="confirm-password"
-                                                                        class="flex justify-between mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                                        Confirm Password <button type="button"
-                                                                            onclick="showConfPassword(), changeconftext()"><i
-                                                                                class="fa-regular fa-eye-slash"></i></button>
+                                                                    <label for="confirm-password{{ $user->id }}"
+                                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                                                        Confirm Password
                                                                     </label>
-                                                                    <input type="password" required
-                                                                        class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password') is-invalid @enderror"
-                                                                        name="password_confirmation">
+                                                                    <div class="relative">
+                                                                        <input type="password"
+                                                                            name="password_confirmation"
+                                                                            id="confirm-password{{ $user->id }}"
+                                                                            class="confirm-password bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 @error('password_confirmation') is-invalid @enderror"
+                                                                            placeholder="Confirm Password">
+                                                                        <button type="button"
+                                                                            class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400"
+                                                                            onclick="showConfPassword('{{ $user->id }}'), changeConfText('{{ $user->id }}')">
+                                                                            <i class="fa-regular fa-eye-slash"></i>
+                                                                        </button>
+                                                                    </div>
                                                                     @error('password_confirmation')
                                                                         <div class="mt-2 text-sm text-red-500">
                                                                             {{ $message }}
@@ -405,7 +431,7 @@
     <!-- Argon -->
     <script src="{{ asset('assets/js/sidenav-burger.js') }}"></script>
     <script src="{{ asset('assets/js/fixed-plugin.js') }}"></script>
-    <script src="{{asset('build/assets/app-af0b7264.js')}}"></script>
+    <script src="{{ asset('build/assets/app-af0b7264.js') }}"></script>
 
     <!-- konfirmasi -->
     <script>
