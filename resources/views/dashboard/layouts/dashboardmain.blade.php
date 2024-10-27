@@ -75,7 +75,60 @@
     <script src="{{ asset('assets/vendor/datatables.js') }}"></script>
     
     <script>
-        let table = new DataTable("#datatable-search");
+        let table = new DataTable("#datatable-search", {
+            drawCallback: function(settings) {
+                // Get all modal trigger buttons
+                const modalButtons = document.querySelectorAll('[data-modal-target]');
+
+                modalButtons.forEach(button => {
+                    const modalId = button.getAttribute('data-modal-target');
+                    const modal = document.getElementById(modalId);
+
+                    if (!modal) return;
+
+                    // Remove existing listeners to prevent duplicates
+                    const newButton = button.cloneNode(true);
+                    button.parentNode.replaceChild(newButton, button);
+
+                    // Initialize Flowbite modal on the new button
+                    const modalOptions = {
+                        placement: 'center',
+                        backdrop: 'dynamic',
+                        backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
+                        closable: true,
+                        onHide: () => {
+                            console.log('modal is hidden');
+                        },
+                        onShow: () => {
+                            console.log('modal is shown');
+                        },
+                        onToggle: () => {
+                            console.log('modal has been toggled');
+                        }
+                    };
+
+                    const $targetEl = document.getElementById(modalId);
+                    const $triggerEl = newButton;
+
+                    if ($targetEl) {
+                        const modal = new Modal($targetEl, modalOptions);
+
+                        // Add click handler
+                        $triggerEl.addEventListener('click', () => {
+                            modal.show();
+                        });
+
+                        // Handle close button
+                        const closeButtons = $targetEl.querySelectorAll('[data-modal-toggle]');
+                        closeButtons.forEach(closeButton => {
+                            closeButton.addEventListener('click', () => {
+                                modal.hide();
+                            });
+                        });
+                    }
+                });
+            }
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
@@ -96,6 +149,7 @@
                 }
             });
         }
+
         function confirmStop(id) {
             Swal.fire({
                 title: 'Konfirmasi Stop Voting',
