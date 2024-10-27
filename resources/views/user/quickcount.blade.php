@@ -72,6 +72,6 @@
         updateChart();
         setInterval(() => {
             updateChart();
-        }, 1000);
+        }, 5000);
     </script>
 @endpush

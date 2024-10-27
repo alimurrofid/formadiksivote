@@ -13,7 +13,7 @@
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
                                 <p
-                                    class="mb-0 font-sans text-lg font-semibold leading-normal uppercase dark:text-white dark:opacity-60 truncate">
+                                    class="mb-0 font-sans text-lg font-semibold leading-normal uppercase truncate dark:text-white dark:opacity-60">
                                     Candidate</p>
                                 <h5 class="text-4xl font-bold dark:text-white counter">{{ $candidate_count }}</h5>
                             </div>
@@ -44,7 +44,7 @@
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
                                 <p
-                                    class="mb-0 font-sans text-lg font-semibold leading-normal uppercase dark:text-white dark:opacity-60 truncate">
+                                    class="mb-0 font-sans text-lg font-semibold leading-normal uppercase truncate dark:text-white dark:opacity-60">
                                     All Users</p>
                                 <h5 class="text-4xl font-bold dark:text-white counter">{{ $user_count }}</h5>
                             </div>
@@ -74,7 +74,7 @@
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
                                 <p
-                                    class="mb-0 font-sans text-lg font-semibold leading-normal uppercase dark:text-white dark:opacity-60 truncate">
+                                    class="mb-0 font-sans text-lg font-semibold leading-normal uppercase truncate dark:text-white dark:opacity-60">
                                     Already Vote</p>
                                 <h5 class="text-4xl font-bold dark:text-white counter">{{ $user_voted }}</h5>
                             </div>
@@ -104,7 +104,7 @@
                         <div class="flex-none w-2/3 max-w-full px-3">
                             <div>
                                 <p
-                                    class="mb-0 font-sans text-lg font-semibold leading-normal uppercase dark:text-white dark:opacity-60 truncate">
+                                    class="mb-0 font-sans text-lg font-semibold leading-normal uppercase truncate dark:text-white dark:opacity-60">
                                     Not yet Vote</p>
                                 <h5 class="text-4xl font-bold dark:text-white counter">{{ $user_not_voted }}</h5>
                             </div>
@@ -282,6 +282,6 @@
         updateChart();
         setInterval(() => {
             updateChart();
-        }, 1000);
+        }, 5000);
     </script>
 @endpush
