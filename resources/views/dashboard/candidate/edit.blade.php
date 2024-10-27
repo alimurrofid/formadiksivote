@@ -87,7 +87,7 @@
                                             class="inline-flex items-center justify-center mr-4 text-sm text-white transition-all duration-200 ease-in-out h-7 w-7 md:h-9 md:w-9 rounded-xl"
                                             alt="{{ $candidate->name }}" />
                                         {{-- end image old show --}}
-                                        <input id="filepondInput" type="file" name="photo" required
+                                        <input id="filepondInput" type="file" name="photo"
                                             class="items-center justify-center @error('photo') is-invalid @enderror" value="{{ old('photo', $candidate->photo) }}">
                                         @error('photo')
                                             <div class="mt-2 text-sm text-red-500">

@@ -137,49 +137,58 @@ class CandidateController extends Controller
         $validatedData = Validator::make($request->all(), [
             'voting_number' => 'required|integer',
             'name' => 'required|string',
-            'photo' => 'required|string',
+            'photo' => 'nullable',
             'major' => 'required|string',
             'department' => 'required|string',
             'vision' => 'required',
         ]);
 
+        if ($request->photo) {
+            $tempFile = TemporaryFile::where('folder', $request->photo)->first();
+            //delete if fails to save to database
+            if ($validatedData->fails() && $tempFile) {
+                Storage::deleteDirectory('tmp/' . $tempFile->folder);
+                $tempFile->delete();
+                return redirect()->route('candidate.index')->withErrors($validatedData)->withInput();
+            } else if ($validatedData->fails()) {
+                return redirect()->route('candidate.index')->withErrors($validatedData)->withInput();
+            }
 
-        $tempFile = TemporaryFile::where('folder', $request->photo)->first();
-        //delete if fails to save to database
-        if ($validatedData->fails() && $tempFile) {
-            Storage::deleteDirectory('tmp/' . $tempFile->folder);
-            $tempFile->delete();
-            return redirect()->route('candidate.index')->withErrors($validatedData)->withInput();
-        } else if ($validatedData->fails()) {
-            return redirect()->route('candidate.index')->withErrors($validatedData)->withInput();
+
+            if ($tempFile) {
+                //simpan foto yang lama
+                $oldPhoto = $candidate->photo;
+                //copy file from tmp to public
+                Storage::copy('tmp/' . $tempFile->folder . '/' . $tempFile->filename, 'public/Candidate/' . $tempFile->filename);
+                //save to database
+                $candidate->update([
+                    'voting_number' => $request->voting_number,
+                    'name' => $request->name,
+                    'photo' => $tempFile->filename,
+                    'major' => $request->major,
+                    'department' => $request->department,
+                    'vision' => $request->vision,
+                ]);
+                //hapus foto lama
+                Storage::disk('public')->delete('public/Candidate/' . $oldPhoto);
+                //after upload delete
+                Storage::deleteDirectory('tmp/' . $tempFile->folder);
+                TemporaryFile::where('folder', $tempFile->folder)->delete();
+                //redirect to index
+                Alert::success('Success', 'Candidate berhasil ditambahkan');
+                return response()->redirectTo(route('candidate.index'));
+            }
         }
 
-
-        if ($tempFile) {
-            //simpan foto yang lama
-            $oldPhoto = $candidate->photo;
-            //copy file from tmp to public
-            Storage::copy('tmp/' . $tempFile->folder . '/' . $tempFile->filename, 'public/Candidate/' . $tempFile->filename);
-            //save to database
-            $candidate->update([
-                'voting_number' => $request->voting_number,
-                'name' => $request->name,
-                'photo' => $tempFile->filename,
-                'major' => $request->major,
-                'department' => $request->department,
-                'vision' => $request->vision,
-            ]);
-            //hapus foto lama
-            Storage::disk('public')->delete('public/Candidate/' . $oldPhoto);
-            //after upload delete
-            Storage::deleteDirectory('tmp/' . $tempFile->folder);
-            TemporaryFile::where('folder', $tempFile->folder)->delete();
-            //redirect to index
-            Alert::success('Success', 'Candidate berhasil ditambahkan');
-            return response()->redirectTo(route('candidate.index'));
-        }
-        Alert::error('Error', 'Candidate gagal ditambahkan');
-        return redirect()->back();
+        $candidate->update([
+            'voting_number' => $request->voting_number,
+            'name' => $request->name,
+            'major' => $request->major,
+            'department' => $request->department,
+            'vision' => $request->vision,
+        ]);
+        Alert::success('Success', 'Candidate berhasil diubah');
+        return response()->redirectTo(route('candidate.index'));
     }
 
     /**
