@@ -23,7 +23,7 @@ function changeText(userId = "") {
 // Fungsi untuk menampilkan atau menyembunyikan konfirmasi password
 function showConfPassword(userId = "") {
     var confPasswordInput = document.querySelector(
-        `#confirm-password${userId}`
+        `#confirm-password${userId}`,
     );
     if (confPasswordInput.type === "password") {
         confPasswordInput.type = "text";
@@ -35,7 +35,7 @@ function showConfPassword(userId = "") {
 // Fungsi untuk mengganti ikon tombol show/hide konfirmasi password
 function changeConfText(userId = "") {
     var eyeIcon = document.querySelector(
-        `#confirm-password${userId} + button i`
+        `#confirm-password${userId} + button i`,
     );
     if (eyeIcon.classList.contains("fa-eye-slash")) {
         eyeIcon.classList.remove("fa-eye-slash");
