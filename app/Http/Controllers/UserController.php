@@ -136,15 +136,25 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         try {
-            $user->update([
+            $data = [
                 'name' => $request->validated('name'),
                 'username' => $request->validated('username'),
-                'password' => Hash::make($request->validated('password')),
-            ]);
+            ];
+
+            if ($request->filled('password')) {
+                if ($request->password !== $request->password_confirmation) {
+                    return redirect()->back()->withErrors(['password_confirmation' => 'Password tidak cocok.']);
+                }
+
+                $data['password'] = bcrypt($request->password);
+            }
+
+            $user->update($data);
+
             Alert::success('Success', 'User berhasil diupdate');
             return redirect()->route('user.index');
         } catch (\Throwable $e) {
-            Alert::error('Error', 'User Gagal diupdate');
+            Alert::error('Error', 'User gagal diupdate');
             return redirect()->back();
         }
     }
