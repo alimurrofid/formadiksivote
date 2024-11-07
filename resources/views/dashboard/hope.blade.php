@@ -22,7 +22,7 @@
                                 @foreach ($hopes as $hope)
                                     <tr>
                                         <td class="text-sm font-normal leading-normal">{{ $loop->iteration }}</td>
-                                        <td class="text-sm font-normal leading-normal">{{ $hope->user->name }}</td>
+                                        <td class="text-sm font-normal leading-normal">{{ $hope->user->username }}</td>
                                         <td class="text-sm font-normal leading-normal">{{ $hope->candidate->name}}</td>
                                         <td class="text-sm font-normal leading-normal">{{ $hope->desire }}</td>
                                     </tr>
