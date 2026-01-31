@@ -15,7 +15,7 @@
 
 requirement:
 
--   PHP >= 8.1
+-   PHP >= 8.2
 -   [Composer](https://getcomposer.org/download/)
 -   [Node.js](https://nodejs.org/en/download/)
 -   [Vscode](https://code.visualstudio.com/download)
@@ -45,7 +45,7 @@ composer update
 3. Copy .env.example to .env
 
 ```sh
-copy .env.example .env
+cp .env.example .env
 ```
 
 4. Generate Key
