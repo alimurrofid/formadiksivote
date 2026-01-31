@@ -15,18 +15,18 @@
 
 requirement:
 
--   PHP >= 8.2
--   [Composer](https://getcomposer.org/download/)
--   [Node.js](https://nodejs.org/en/download/)
--   [Vscode](https://code.visualstudio.com/download)
--   [Xampp](https://www.apachefriends.org/download.html)
--   [Git](https://git-scm.com/downloads)
+- PHP >= 8.2
+- [Composer](https://getcomposer.org/download/)
+- [Node.js](https://nodejs.org/en/download/)
+- [Vscode](https://code.visualstudio.com/download)
+- [Xampp](https://www.apachefriends.org/download.html)
+- [Git](https://git-scm.com/downloads)
 
 Vscode Extension:
 
--   Laravel Extension Pack
--   Tailwind CSS Extension Pack
--   PostCSS Language Support
+- Laravel Extension Pack
+- Tailwind CSS Extension Pack
+- PostCSS Language Support
 
 ## How to install
 
