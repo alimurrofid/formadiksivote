@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/datatables.css') }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="{{asset('build/assets/app-0e00dbd6.css')}}">
+
     <!-- CSS Libraries -->
     @stack('customCSS')
 
@@ -75,8 +75,9 @@
     <script src="{{ asset('assets/vendor/datatables.js') }}"></script>
     
     <script>
-        let table = new DataTable("#datatable-search", {
-            drawCallback: function(settings) {
+        if (document.getElementById("datatable-search")) {
+            let table = new DataTable("#datatable-search", {
+                drawCallback: function(settings) {
                 // Get all modal trigger buttons
                 const modalButtons = document.querySelectorAll('[data-modal-target]');
 
@@ -119,9 +120,10 @@
                         });
 
                         // Handle close button
-                        const closeButtons = $targetEl.querySelectorAll('[data-modal-toggle]');
-                        closeButtons.forEach(closeButton => {
-                            closeButton.addEventListener('click', () => {
+                        const closeButtons = $targetEl.querySelectorAll(
+                            '[data-modal-hide]');
+                        closeButtons.forEach(closeBtn => {
+                            closeBtn.addEventListener('click', () => {
                                 modal.hide();
                             });
                         });
@@ -129,6 +131,7 @@
                 });
             }
         });
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>

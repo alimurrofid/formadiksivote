@@ -74,6 +74,11 @@ function toggleTheme() {
 
 // Fungsi untuk mengganti tema
 function switchTheme() {
+    if (!switchToggle) {
+        if (isDarkmode) html.classList.add("dark");
+        else html.classList.remove("dark");
+        return;
+    }
     if (isDarkmode) {
         html.classList.add("dark");
         switchToggle.classList.remove("bg-white", "text-black");

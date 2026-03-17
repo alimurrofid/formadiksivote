@@ -61,15 +61,29 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        if ($request->ajax()) {
+            $users = User::query()->orderBy('id', 'desc');
+
+            return datatables()->of($users)
+                ->addIndexColumn()
+                ->addColumn('status', function ($user) {
+                    return view('dashboard.partials.user_status', compact('user'))->render();
+                })
+                ->addColumn('action', function ($user) {
+                    return view('dashboard.partials.user_action', compact('user'))->render();
+                })
+                ->rawColumns(['status', 'action'])
+                ->make(true);
+        }
 
         $title = 'Hapus User!';
         $text = "Apakah anda yakin ingin menghapus user ini?";
         confirmDelete($title, $text);
+        
         $VoteSession = VoteSession::latest()->first();
-        return view('dashboard.user', compact('users', 'VoteSession'));
+        return view('dashboard.user', compact('VoteSession'));
     }
     /**
      * Show the form for creating a new resource.
